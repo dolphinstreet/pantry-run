@@ -9,11 +9,11 @@ router.get("/:listId", (req, res, next) => {
     // display list details
 });
 
-router.get("/:listId/edit", (req, res, next) => {
+router.get("/edit/:listId", (req, res, next) => {
     // display list edition form
 });
 
-router.post("/:listId/edit", (req, res, next) => {
+router.post("/edit/:listId", (req, res, next) => {
     // list edition form submission
 });
 

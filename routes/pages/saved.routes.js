@@ -9,7 +9,7 @@ router.get("/:listId", (req, res, next) => {
     // display saved list details
 });
 
-router.get("/:listId/edit", (req, res, next) => {
+router.get("/edit/:listId", (req, res, next) => {
     // display saved list form
 });
 

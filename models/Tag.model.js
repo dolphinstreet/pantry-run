@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the Ingredient model to whatever makes sense in this case
+// tag model
 const tagSchema = new Schema({
     name: {
         type: String,
@@ -22,6 +22,6 @@ const tagSchema = new Schema({
 
 });
 
-const Tag = model("Ingredient", tagSchema);
+const Tag = model("Tag", tagSchema);
 
 module.exports = Ingredient;

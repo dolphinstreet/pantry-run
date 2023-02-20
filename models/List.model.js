@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the List model to whatever makes sense in this case
+// List model
 const listSchema = new Schema({
     name: {
         type: String,

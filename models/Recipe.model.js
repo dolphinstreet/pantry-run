@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the Recipe model to whatever makes sense in this case
+// Recipe model
 const recipeSchema = new Schema({
     title: {
         type: String,

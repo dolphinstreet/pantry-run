@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the Ingredient model to whatever makes sense in this case
+// Category model
 const categorySchema = new Schema({
     name: {
         type: String,
@@ -8,9 +8,8 @@ const categorySchema = new Schema({
         required: false,
         trim: true
     }
-
 });
 
-const Category = model("Ingredient", categorySchema);
+const Category = model("Category", categorySchema);
 
 module.exports = Ingredient;

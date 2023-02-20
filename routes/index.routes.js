@@ -7,11 +7,11 @@ router.get("/", (req, res, next) => {
 });
 
 // page routing
-router.use("/", require("./authentication.routes"));
-router.use("/user", require("./user.routes"));
-router.use("/lists", require("./lists.routes"));
-router.use("/saved", require("./saved.routes"));
-router.use("/recipes", require("./recipes.routes"));
+router.use("/", require("./pages/authentication.routes"));
+router.use("/profile", require("./pages/users.routes"));
+router.use("/lists", require("./pages/lists.routes"));
+router.use("/saved", require("./pages/saved.routes"));
+router.use("/recipes", require("./pages/recipes.routes"));
 
 // api routing
 router.use("/api/lists", require("./api/lists.routes"));

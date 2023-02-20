@@ -113,10 +113,16 @@ router.post("/signup", async (req, res, next) => {
         next(error)
     }
 });
-
-router.get("/logout", (req, res, next) => {
+//router.get("/logout", (req, res, next) => {
+router.post("/logout", (req, res, next) => { // this one should be a post, right ?
     // logout user
-    //redirect to homepage
+    req.session.destroy(err => {
+        if (err) {
+            next(err);
+        }
+        //redirect to homepage
+        res.redirect('/welcome');
+    });
 });
 
 module.exports = router;

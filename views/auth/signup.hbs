@@ -1,0 +1,41 @@
+<h1>Sign up</h1>
+<form action="/signup" method="POST">
+    <p>{{errorEmail}}</p>
+    <div>
+        <label for="email">Email</label>
+        <input
+            type="email"
+            name="email"
+            id="email"
+            value="{{email}}"
+            placeholder="name@example.com"
+        />
+    </div>
+
+    <p>{{errorUsername}}</p>
+    <div>
+        <label for="username">Username</label>
+        <input
+            type="username"
+            name="username"
+            id="username"
+            value="{{username}}"
+            placeholder="Username"
+        />
+    </div>
+
+    <p>{{errorPassword}}</p>
+    <div>
+        <label for="password">Password</label>
+        <input
+            type="password"
+            name="password"
+            id="password"
+            value="{{password}}"
+            placeholder="Password"
+        />
+    </div>
+
+    <button type="submit">Sign up</button>
+</form>
+<a href="/login">Are you already registered ?</a>

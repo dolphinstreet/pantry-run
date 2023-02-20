@@ -1,1 +1,1 @@
-# grocery-list
+# pantry-run

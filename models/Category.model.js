@@ -12,4 +12,4 @@ const categorySchema = new Schema({
 
 const Category = model("Category", categorySchema);
 
-module.exports = Ingredient;
+module.exports = Category;

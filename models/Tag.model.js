@@ -24,4 +24,4 @@ const tagSchema = new Schema({
 
 const Tag = model("Tag", tagSchema);
 
-module.exports = Ingredient;
+module.exports = Tag;

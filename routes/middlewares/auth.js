@@ -13,21 +13,31 @@ const isLoggedIn = (req, res, next) => {
 // redirects the user to the favorite list page or lists page
 const isLoggedOut = (req, res, next) => {
     if (req.session.currentUser) {
-        return res.redirect('/');
+        hasFavorite(req, res, next)
     }
     next();
 };
 
 //Check if the user has a favorite liste or not and redirects
 const hasFavorite = async (req, res, next) => {
-    const favoriteList = await List.findOne({ favorite: true, user: req.session.currentUser.id })
-    if (favoriteList) {
-        res.redirect(`/lists/${favoriteList.id}`);
+    if (!req.session.favoriteList) {
+        const favoriteList = await List.findOne({ favorite: true, user: req.session.currentUser.id })
+        if (favoriteList) {
+            req.session.favoriteList = favoriteList.id
+        }
+    }
+    if (req.session.favoriteList) {
+        res.redirect(`/lists/${req.session.favoriteList}`);
     } else {
         res.redirect("/lists");
     }
 }
-//Check if the fields are filled
+/**
+ * Check if the field is filled in form
+ * @param {String} field form input name in request
+ * @param {String} value form input value in request
+ * @param {Response} res response object
+ */
 function requiredField(field, value, res) {
     if (!value) {
         if (!res.locals.errors) {
@@ -89,14 +99,6 @@ const signupFormValidation = (req, res, next) => {
 
 }
 
-//  //Checks for email validation
-//  if (!actualEmail.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-//     return res.render("auth/signup", { errorEmail: "This isn't an email !", username: actualUsername, password: actualPassword })
-// }
-// //Checks for password security
-// if (actualPassword.length < 8) {
-//     return res.render("auth/signup", { errorPassword: "The password must be at least 8 characters long !", username: actualUsername, password: actualPassword, email: actualEmail })
-// }
 
 
 

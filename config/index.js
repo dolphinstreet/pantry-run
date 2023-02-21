@@ -21,6 +21,7 @@ const path = require("path");
 const session = require('express-session')
 // Store the session in the database
 const MongoStore = require('connect-mongo')
+const hbs = require('hbs');
 
 
 // Middleware configuration
@@ -39,6 +40,9 @@ module.exports = (app) => {
   app.set("view engine", "hbs");
   // Handles access to the public folder
   app.use(express.static(path.join(__dirname, "..", "public")));
+
+  hbs.registerPartials(path.join(__dirname, '..', 'views', 'partials'));
+
 
   // Handles access to the favicon
   app.use(favicon(path.join(__dirname, "..", "public", "images", "favicon.ico")));

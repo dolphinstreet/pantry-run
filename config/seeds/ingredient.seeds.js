@@ -1,5 +1,6 @@
 const Ingredient = require("../../models/Ingredient.model");
 const seedCategories = require("./category.seeds");
+const Category = require("../../models/Category.model");
 
 const ingredients = [
     {
@@ -78,14 +79,30 @@ const ingredients = [
     { name: "Tomates", category: "Fresh produce" },
 ];
 
+async function getCategoryIds(ingredients) {
+    for (ingredient of ingredients) {
+        try {
+            ingredient.category = await Category.findOne(
+                { name: ingredient.category },
+                { _id: 1 }
+            ).exec();
+        } catch (error) {
+            console.log(
+                `something went wrong while getting category ids for ingredients: ${error.message}`
+            );
+        }
+    }
+    return ingredients;
+}
+
 const seedIngredients = async () => {
     try {
-        if (Ingredient.count() > 0) {
+        if ((await Ingredient.count()) > 0) {
             return;
         }
 
-        seedCategories();
-        const createdIngredients = await Ingredient.create(ingredients);
+        const dbReady = await getCategoryIds(ingredients);
+        const createdIngredients = await Ingredient.create(dbReady);
         console.log(`Created ${createdIngredients.length} ingredients`);
     } catch (error) {
         console.error(

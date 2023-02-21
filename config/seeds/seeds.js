@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const seedUsers = require("./user.seeds");
 const seedCategories = require("./category.seeds");
 const seedUnits = require("./unit.seeds");
+const seedIngredients = require("./ingredient.seeds");
 
 async function seedDatabase() {
     try {
@@ -11,9 +12,10 @@ async function seedDatabase() {
 
         console.log(`Succesfully connected to ${db.connection.name} database.`);
 
+        await seedUsers();
         await seedCategories();
         await seedUnits();
-        await seedUsers();
+        await seedIngredients();
 
         await mongoose.disconnect();
         console.log(`Succesfully disconnected from ${db.connection.name}`);

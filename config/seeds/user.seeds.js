@@ -11,7 +11,7 @@ const users = [
 
 const seedUsers = async () => {
     try {
-        if (User.count() > 0) {
+        if ((await User.count()) > 0) {
             console.log("Users already seeded, nothing to do here");
             return;
         }

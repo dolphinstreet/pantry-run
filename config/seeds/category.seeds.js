@@ -1,7 +1,7 @@
 const Category = require("../../models/Category.model");
 
 const categories = [
-    { name: "Alchool" },
+    { name: "Alcohol" },
     { name: "Baby" },
     { name: "Bakery" },
     { name: "Beverages" },
@@ -26,11 +26,12 @@ const categories = [
 
 const seedCategories = async () => {
     try {
-        if (Category.count() > 0) {
+        if ((await Category.count()) > 0) {
             console.log("Categories already seeded, nothing to do here");
             return;
         }
 
+        console.log(categories);
         const createdCategories = await Category.create(categories);
         console.log(`Created ${createdCategories.length} categories`);
     } catch (error) {

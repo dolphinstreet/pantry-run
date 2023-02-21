@@ -5,7 +5,7 @@ const tags = ["Dinner", "Lunch", "Breakfast", "Italian"];
 
 const seedTags = async () => {
     try {
-        if (Tag.count() > 0) {
+        if ((await Tag.count()) > 0) {
             return;
         }
 

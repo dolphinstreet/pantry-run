@@ -1,9 +1,10 @@
 const express = require("express");
+const { isLoggedIn, isLoggedOut } = require('./middlewares/auth.js');
 const router = express.Router();
 
 /* GET home page */
-router.get("/", (req, res, next) => {
-    res.render("index");
+router.get("/", isLoggedOut, (req, res, next) => {
+    res.render("welcome");
 });
 
 // page routing

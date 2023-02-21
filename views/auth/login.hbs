@@ -1,0 +1,34 @@
+<h1>Login</h1>
+
+<form action="/login" method="POST">
+    {{#if errors.email}}<p class="errorMessage">{{errors.email}}</p>{{/if}}
+    {{#if error}}<p class="errorMessage">{{error}}</p>{{/if}}
+    <div>
+        <label for="email">Email</label>
+        <input
+            type="email"
+            name="email"
+            id="email"
+            value="{{email}}"
+            placeholder="name@example.com"
+        />
+    </div>
+    {{#if errors.password}}<p
+            class="errorMessage"
+        >{{errors.password}}</p>{{/if}}
+    {{#if errorPassword}}<p class="errorMessage">{{errorPassword}}</p>{{/if}}
+
+    <div>
+        <label for="password">Password</label>
+        <input
+            type="password"
+            name="password"
+            id="password"
+            value="{{password}}"
+            placeholder="Password"
+        />
+    </div>
+    <button type="submit">Login</button>
+</form>
+<a href="/signup">Not registered yet ? Sign Up !</a>
+<a href="/reset-password">Forgot password</a>

@@ -1,4 +1,4 @@
-const User = require("../../models/Category.model");
+const User = require("../../models/User.model");
 
 const users = [
     {
@@ -12,11 +12,13 @@ const users = [
 const seedUsers = async () => {
     try {
         if (User.count() > 0) {
+            console.log("Users already seeded, nothing to do here");
             return;
         }
 
         const createdUsers = await User.create(users);
         console.log(`Created ${createdUsers.length} users`);
+        createdUsers.forEach((entry) => console.log(entry));
     } catch (error) {
         console.error(
             `something went wrong while seeding Users: ${error.message}`

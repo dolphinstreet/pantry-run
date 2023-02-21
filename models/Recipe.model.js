@@ -7,6 +7,11 @@ const recipeSchema = new Schema({
         trim: true,
         required: false,
     },
+    serves: {
+        type: Number,
+        required: true,
+        default: 1,
+    },
     recipeLink: {
         type: String,
         trim: true,

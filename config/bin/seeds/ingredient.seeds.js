@@ -83,6 +83,7 @@ const seedIngredients = async () => {
         return;
     }
 
+    seedCategories();
     const createdIngredients = await Ingredient.create(ingredients);
     console.log(`Created ${createdIngredients.length} ingredients`);
 };

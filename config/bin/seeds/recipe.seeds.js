@@ -1,3 +1,6 @@
+const seedUsers = require("./user.seeds");
+const seedIngredients = require("./ingredient.seeds");
+const seedUnits = require("./unit.seeds");
 const Recipe = require("../../models/Recipe.model");
 
 const recipes = [
@@ -115,6 +118,7 @@ const seedRecipes = async () => {
     seedUsers();
     seedIngredients();
     seedUnits();
+
     const createdRecipes = await Recipe.create(recipes);
     console.log(`Created ${createdRecipes.length} recipes`);
 };

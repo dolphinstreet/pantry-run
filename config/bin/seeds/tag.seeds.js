@@ -1,3 +1,4 @@
+const seedUsers = require("./user.seeds");
 const Tag = require("../../models/Tag.model");
 
 const tags = ["Dinner", "Lunch", "Breakfast", "Italian"];
@@ -8,6 +9,7 @@ const seedTags = async () => {
     }
 
     seedUsers();
+
     user = User.findOne();
     tags = tags.map((tag, idx) => {
         return {
@@ -16,6 +18,7 @@ const seedTags = async () => {
             user,
         };
     });
+
     const createdTags = await Tag.create(tags);
     console.log(`Created ${createdTags.length} tags`);
 };

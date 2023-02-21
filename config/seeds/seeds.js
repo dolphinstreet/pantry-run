@@ -6,7 +6,9 @@ const seedUnits = require("./unit.seeds");
 
 async function seedDatabase() {
     try {
+        require("dotenv").config();
         const db = await openConnection();
+
         console.log(`Succesfully connected to ${db.connection.name} database.`);
 
         await seedCategories();

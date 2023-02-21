@@ -9,28 +9,28 @@ const listSchema = new Schema({
     },
     favorite: {
         type: Boolean,
-        default: false
+        default: false,
     },
     template: Boolean,
-    rows: [{
-        amount: Number,
-        unit: {
-            type: String,
-            enum: ["", "kg", "g", "L", "mL"],
-            default: ""
+    rows: [
+        {
+            amount: Number,
+            unit: {
+                type: Schema.Types.ObjectId,
+                ref: "Unit",
+            },
+            ingredient: {
+                type: Schema.Types.ObjectId,
+                ref: "Ingredient",
+                required: true,
+            },
         },
-        ingredient: {
-            type: Schema.Types.ObjectId,
-            ref: "Ingredient",
-            required: true
-        }
-
-    }],
+    ],
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",
-        required: true
-    }
+        required: true,
+    },
 });
 
 const List = model("List", listSchema);

@@ -31,7 +31,6 @@ const seedCategories = async () => {
             return;
         }
 
-        console.log(categories);
         const createdCategories = await Category.create(categories);
         console.log(`Created ${createdCategories.length} categories`);
     } catch (error) {

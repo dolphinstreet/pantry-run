@@ -18,7 +18,6 @@ const seedUsers = async () => {
 
         const createdUsers = await User.create(users);
         console.log(`Created ${createdUsers.length} users`);
-        createdUsers.forEach((entry) => console.log(entry));
     } catch (error) {
         console.error(
             `something went wrong while seeding Users: ${error.message}`

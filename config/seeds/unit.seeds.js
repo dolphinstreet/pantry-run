@@ -11,7 +11,6 @@ const seedUnits = async () => {
 
         const createdUnits = await Unit.create(units);
         console.log(`Created ${createdUnits.length} units`);
-        createdUnits.forEach((entry) => console.log(entry));
     } catch (error) {
         console.error(
             `something went wrong while seeding Units: ${error.message}`

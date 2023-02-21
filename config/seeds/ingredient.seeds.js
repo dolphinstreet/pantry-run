@@ -80,7 +80,7 @@ const ingredients = [
 ];
 
 async function getCategoryIds(ingredients) {
-    for (ingredient of ingredients) {
+    for (const ingredient of ingredients) {
         try {
             ingredient.category = await Category.findOne(
                 { name: ingredient.category },

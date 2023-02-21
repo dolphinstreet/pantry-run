@@ -1,8 +1,61 @@
-<nav>
+{{!-- <nav>
     <ul>
         <li> <a href="/lists">Lists</a></li>
         <li> <a href="/saved">Saved</a></li>
         <li> <a href="/recipes">Recipes</a></li>
         <li> <a href="/profile/${{currentUser.id}}">Profile</a></li>
+    </ul>
+</nav> --}}
+
+<nav>
+    <ul>
+        <li class="first">
+            <div class="icon">
+                <a href="/lists">
+                    <i class="fa-solid fa-list-check"></i>
+                </a>
+            </div>
+        </li>
+
+        <li class="second">
+            <div class="icon">
+                <a href="/saved">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </div>
+        </li>
+
+        <li class="center">
+            <button>
+                <span>
+                    <div class="icon plus">
+                        <a href="/">
+                            <i class="fa-regular fa-plus"></i>
+                            <i class="fa-regular fa-pen-to-square not-active">
+                            </i>
+                            <i class="fa-solid fa-check not-active"></i>
+                        </a>
+
+                    </div>
+                </span>
+            </button>
+        </li>
+
+        <li class="third">
+            <div class="icon">
+                <a href="/recipes">
+                    <i class="fa-solid fa-utensils"></i>
+                </a>
+            </div>
+        </li>
+
+        <li class="fourth">
+            <div class="icon">
+                <a href="/profile/${{currentUser.id}}">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+            </div>
+        </li>
+
     </ul>
 </nav>

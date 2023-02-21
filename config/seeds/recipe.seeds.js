@@ -111,16 +111,22 @@ const recipes = [
 ];
 
 const seedRecipes = async () => {
-    if (Recipe.count()) {
-        return;
+    try {
+        if (Recipe.count() > 0) {
+            return;
+        }
+
+        seedUsers();
+        seedIngredients();
+        seedUnits();
+
+        const createdRecipes = await Recipe.create(recipes);
+        console.log(`Created ${createdRecipes.length} recipes`);
+    } catch (error) {
+        console.error(
+            `something went wrong while seeding Recipes: ${error.message}`
+        );
     }
-
-    seedUsers();
-    seedIngredients();
-    seedUnits();
-
-    const createdRecipes = await Recipe.create(recipes);
-    console.log(`Created ${createdRecipes.length} recipes`);
 };
 
 module.exports = seedRecipes;

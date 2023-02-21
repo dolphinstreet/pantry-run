@@ -25,12 +25,19 @@ const categories = [
 ];
 
 const seedCategories = async () => {
-    if (Category.count()) {
-        return;
-    }
+    try {
+        if (Category.count() > 0) {
+            console.log("Categories already seeded, nothing to do here");
+            return;
+        }
 
-    const createdCategories = await Category.create(categories);
-    console.log(`Created ${createdCategories.length} categories`);
+        const createdCategories = await Category.create(categories);
+        console.log(`Created ${createdCategories.length} categories`);
+    } catch (error) {
+        console.error(
+            `something went wrong while seeding Categories: ${error.message}`
+        );
+    }
 };
 
 module.exports = seedCategories;

@@ -79,13 +79,19 @@ const ingredients = [
 ];
 
 const seedIngredients = async () => {
-    if (Ingredient.count()) {
-        return;
-    }
+    try {
+        if (Ingredient.count() > 0) {
+            return;
+        }
 
-    seedCategories();
-    const createdIngredients = await Ingredient.create(ingredients);
-    console.log(`Created ${createdIngredients.length} ingredients`);
+        seedCategories();
+        const createdIngredients = await Ingredient.create(ingredients);
+        console.log(`Created ${createdIngredients.length} ingredients`);
+    } catch (error) {
+        console.error(
+            `something went wrong while seeding Ingredients: ${error.message}`
+        );
+    }
 };
 
 module.exports = seedIngredients;

@@ -1,8 +1,8 @@
 <h1>Login</h1>
 
 <form action="/login" method="POST">
-    <p>{{error}}</p>
-    <p>{{errorEmail}}</p>
+    {{#if errors.email}}<p class="errorMessage">{{errors.email}}</p>{{/if}}
+    {{#if error}}<p class="errorMessage">{{error}}</p>{{/if}}
     <div>
         <label for="email">Email</label>
         <input
@@ -13,7 +13,11 @@
             placeholder="name@example.com"
         />
     </div>
-    <p>{{errorPassword}}</p>
+    {{#if errors.password}}<p
+            class="errorMessage"
+        >{{errors.password}}</p>{{/if}}
+    {{#if errorPassword}}<p class="errorMessage">{{errorPassword}}</p>{{/if}}
+
     <div>
         <label for="password">Password</label>
         <input

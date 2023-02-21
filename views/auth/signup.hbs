@@ -1,6 +1,7 @@
 <h1>Sign up</h1>
 <form action="/signup" method="POST">
-    <p>{{errorEmail}}</p>
+    {{#if errors.email}}<p class="errorMessage">{{errors.email}}</p>{{/if}}
+    {{#if error}}<p class="errorMessage">{{error}}</p>{{/if}}
     <div>
         <label for="email">Email</label>
         <input
@@ -11,8 +12,10 @@
             placeholder="name@example.com"
         />
     </div>
-
-    <p>{{errorUsername}}</p>
+    {{#if errors.username}}<p
+            class="errorMessage"
+        >{{errors.username}}</p>{{/if}}
+    {{#if error}}<p class="errorMessage">{{error.username}}</p>{{/if}}
     <div>
         <label for="username">Username</label>
         <input
@@ -23,8 +26,10 @@
             placeholder="Username"
         />
     </div>
-
-    <p>{{errorPassword}}</p>
+    {{#if errors.password}}<p
+            class="errorMessage"
+        >{{errors.password}}</p>{{/if}}
+    {{#if error}}<p class="errorMessage">{{error.password}}</p>{{/if}}
     <div>
         <label for="password">Password</label>
         <input

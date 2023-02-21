@@ -7,27 +7,28 @@ const { isLoggedIn } = require("../middlewares/auth");
 //We are on based on /lists
 
 router.get("/", isLoggedIn, async (req, res, next) => {
-
     const anotherList = {
-        name: "Pasta al sugo",
+        name: "Weekly",
         favorite: true,
-        user: req.session.currentUser
+        user: req.session.currentUser.id
     }
     const aList = {
-        name: "Lasagna",
-        user: req.session.currentUser
+        name: "Sunday's market",
+        user: req.session.currentUser.id
     }
     const anotherNewList = await List.create(anotherList)
     const aNewList = await List.create(aList)
+    //res.send(aNewList)
 
-    // display all lists
-    const user = req.session.currentUser._id
+    // // display all lists
+    const user = req.session.currentUser.id
     const userLists = await List.find(
-        { user: user }, //find
+        { user: user } //find
     )
 
     //res.send(userLists)
     res.render("lists/list-of-lists", { userLists })
+    //res.send("ciao")
 });
 
 

@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
+const List = require("../../models/List.model");
 
 router.get("/", async (req, res, next) => {
     // display all saved lists
     try {
         const user = req.session.currentUser.id;
-        const userLists = await List.find({
+        const savedLists = await List.find({
             $and: [{ template: { $eq: true } }, { user: user }],
         });
-        res.render("saved/list-of-lists", { userLists });
+        res.render("saved/list-of-lists", { savedLists });
     } catch (error) {
         next(error);
     }

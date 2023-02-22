@@ -5,11 +5,10 @@ const recipeSchema = new Schema({
     title: {
         type: String,
         trim: true,
-        required: false,
+        required: true,
     },
     serves: {
         type: Number,
-        required: true,
         default: 1,
     },
     recipeLink: {

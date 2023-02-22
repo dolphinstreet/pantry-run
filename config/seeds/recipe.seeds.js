@@ -2,10 +2,11 @@ const seedUsers = require("./user.seeds");
 const seedIngredients = require("./ingredient.seeds");
 const seedUnits = require("./unit.seeds");
 const Recipe = require("../../models/Recipe.model");
+const { addUser, fetchIdsForRows } = require("./utils");
 
 const recipes = [
     {
-        name: "Lasagnes: la meilleure recette",
+        title: "Lasagnes: la meilleure recette",
         serves: 6,
         Photo: "/images/lasagna.webp",
         recipeLink:
@@ -58,7 +59,7 @@ const recipes = [
                     "Enfourner à four préchauffé à 165°c (thermostat 5/6) pendant 45 minutes environ, pour que les lasagnes soient bien gratinées. Si les lasagnes gratinent trop vite, les recouvrir de papier d'aluminium.",
             },
         ],
-        tags: ["italian", "dinner", "pasta"],
+        // tags: ["italian", "dinner", "pasta"],
     },
     {
         title: "Véritable Chili con carne",
@@ -106,21 +107,30 @@ const recipes = [
                     "Rectifier l'assaisonnement selon votre goût et servez.",
             },
         ],
-        tags: ["dinner", "ricebowl", "mexican"],
+        // tags: ["dinner", "ricebowl", "mexican"],
     },
 ];
 
 const seedRecipes = async () => {
     try {
-        if (Recipe.count() > 0) {
+        if ((await Recipe.count()) > 0) {
+            console.log("Aborting: Recipes are already seeded");
             return;
         }
 
-        seedUsers();
-        seedIngredients();
-        seedUnits();
+        await seedUsers();
+        await seedUnits();
+        await seedIngredients();
 
-        const createdRecipes = await Recipe.create(recipes);
+        for (recipe of recipes) {
+            if (recipe.rows) {
+                recipe.rows = await fetchIdsForRows(recipe.rows);
+            }
+        }
+
+        const recipesReady = await addUser(recipes);
+
+        const createdRecipes = await Recipe.create(recipesReady);
         console.log(`Created ${createdRecipes.length} recipes`);
     } catch (error) {
         console.error(

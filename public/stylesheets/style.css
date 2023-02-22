@@ -151,9 +151,14 @@ label {
     display: flex;
     gap: 0.2rem;
     justify-content: space-between;
+    align-items: flex-start;
 }
 .title{
   display:flex;
+  gap:10px
+}
+.list-details h1{
+  max-width: 70vmin;
 }
 .searchbar input{
     all: unset;
@@ -166,14 +171,24 @@ label {
 
 .list-row{
     display:flex;
+    justify-content: space-between;
     width: 80vmin;
     background-color: rgba(128, 128, 128, 0.107);
     padding: 1rem;
     margin-bottom: 1rem;
 }
 
+.content{
+  display: flex;
+  align-items: center;
+}
+
 .list-row p {
   margin-right: 0.4rem;
+}
+
+.item-name{
+  max-width: 50vmin;
 }
 
 .list-details i{
@@ -188,3 +203,9 @@ label {
   text-decoration: line-through;
 }
 
+*[contenteditable="true"]:focus{
+  outline: none;
+  border-radius: 7px;
+  padding:0.7rem;
+  border: 2px solid var(--blue);
+}

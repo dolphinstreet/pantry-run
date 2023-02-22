@@ -22,15 +22,20 @@
         <div class="ingredients-by-category">
             {{#each list.rows}}
                 <div class="list-row">
-                    <p class="item-amount" contenteditable="true">{{amount}}</p>
-                    <p
-                        class="item-unit"
-                        contenteditable="true"
-                    >{{unit.name}}</p>
-                    <p
-                        class="item-name"
-                        contenteditable="true"
-                    >{{ingredient.name}}</p>
+                    <div class="content">
+                        <p
+                            class="item-amount"
+                            contenteditable="false"
+                        >{{amount}}</p>
+                        <p
+                            class="item-unit"
+                            contenteditable="false"
+                        >{{unit.name}}</p>
+                        <p
+                            class="item-name"
+                            contenteditable="false"
+                        >{{ingredient.name}}</p>
+                    </div>
                     <i class="fa-regular fa-pen-to-square"></i>
                 </div>
             {{/each}}

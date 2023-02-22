@@ -20,7 +20,7 @@ const userSchema = new Schema({
     },
     photo: {
         type: String,
-        default: ""
+        default: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
     }
 },
     {

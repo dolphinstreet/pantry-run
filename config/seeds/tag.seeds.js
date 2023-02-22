@@ -13,6 +13,16 @@ const seedTags = async () => {
 
         seedUsers();
 
+        const defaultUser = await User.findOne().exec();
+
+        const dbReady = tags.map((tag, idx) => {
+            return {
+                name: tag,
+                order: idx,
+                user: defaultUser.id,
+            };
+        });
+
         const createdTags = await Tag.create(dbReady);
         console.log(`Created ${createdTags.length} tags`);
     } catch (error) {

@@ -17,6 +17,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
         const userLists = await List.find({
             $and: [{ template: { $ne: true } }, { user: user }],
         });
+        console.log("lists : >>>>>>>>>>>>>>>>>>>>>>>>>", userLists)
         res.render("lists/list-of-lists", { userLists });
     } catch (error) {
         next(error);

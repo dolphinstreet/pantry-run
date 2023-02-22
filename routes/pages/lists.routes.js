@@ -17,7 +17,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
         const userLists = await List.find({
             $and: [{ template: { $ne: true } }, { user: user }],
         });
-        console.log("lists : >>>>>>>>>>>>>>>>>>>>>>>>>", userLists)
         res.render("lists/list-of-lists", { userLists });
     } catch (error) {
         next(error);
@@ -29,6 +28,7 @@ router.get("/:listId", isLoggedIn, async (req, res, next) => {
     try {
         res.locals.navbar.icon = "fa-regular fa-pen-to-square";
         res.locals.navbar.link = `/lists/edit/${req.params.listId}`;
+        res.locals.scripts = ["/js/list-details.js"]
 
         // #TODO aggregate with mongoose
         const list = await List.findById(req.params.listId)
@@ -41,6 +41,7 @@ router.get("/:listId", isLoggedIn, async (req, res, next) => {
                 model: Ingredient,
                 populate: { path: "category", model: Category },
             });
+        console.log("lists : >>>>>>>>>>>>>>>>>>>>>>>>>", list)
         // aggregate for category listing
         // const data = await List.findById(req.params.listId).aggregate([
         //     { $unwind: "$rows" },

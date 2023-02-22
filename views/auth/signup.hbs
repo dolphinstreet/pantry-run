@@ -1,46 +1,57 @@
-<h1>Sign up</h1>
-<form action="/signup" method="POST">
-    {{#if errors.email}}<p class="errorMessage">{{errors.email}}</p>{{/if}}
-    {{#if error}}<p class="errorMessage">{{error}}</p>{{/if}}
-    <div>
-        <label for="email">Email</label>
-        <input
-            type="email"
-            name="email"
-            id="email"
-            value="{{email}}"
-            placeholder="name@example.com"
-        />
-    </div>
-    {{#if errors.username}}<p
-            class="errorMessage"
-        >{{errors.username}}</p>{{/if}}
-    {{#if error}}<p class="errorMessage">{{error.username}}</p>{{/if}}
-    <div>
-        <label for="username">Username</label>
-        <input
-            type="username"
-            name="username"
-            id="username"
-            value="{{username}}"
-            placeholder="Username"
-        />
-    </div>
-    {{#if errors.password}}<p
-            class="errorMessage"
-        >{{errors.password}}</p>{{/if}}
-    {{#if error}}<p class="errorMessage">{{error.password}}</p>{{/if}}
-    <div>
-        <label for="password">Password</label>
-        <input
-            type="password"
-            name="password"
-            id="password"
-            value="{{password}}"
-            placeholder="Password"
-        />
-    </div>
+<section id="signup">
+    <img src="./images/pantryRun-logo.png" alt="pantry run logo" />
+    <form action="/signup" method="POST">
+        <div class="input-container">
+            <label for="email">Email</label>
+            {{#if error}}<p class="errorMessage">{{error}}</p>{{/if}}
+            {{#if errors.email}}<p
+                    class="errorMessage"
+                >{{errors.email}}</p>{{/if}}
+            <input
+                {{#if errors.email}} class="input-error"{{/if}}
+                {{#if error}} class="input-error"{{/if}}
+                type="email"
+                name="email"
+                id="email"
+                value="{{email}}"
+                placeholder="Type your email"
+            />
+        </div>
+        <div class="input-container">
+            <label for="username">Username</label>
+            {{#if error}}<p class="errorMessage">{{error.username}}</p>{{/if}}
+            {{#if errors.username}}<p
+                    class="errorMessage"
+                >{{errors.username}}</p>{{/if}}
+            <input
+                {{#if errors.username}} class="input-error"{{/if}}
+                {{#if error}} class="input-error"{{/if}}
+                type="username"
+                name="username"
+                id="username"
+                value="{{username}}"
+                placeholder="Choose an username"
+            />
+        </div>
+        <div class="input-container">
+            <label for="password">Password</label>
+            {{#if error}}<p class="errorMessage">{{error.password}}</p>{{/if}}
+            {{#if errors.password}}<p
+                    class="errorMessage"
+                >{{errors.password}}</p>{{/if}}
+            <input
+                {{#if errors.password}} class="input-error"{{/if}}
+                {{#if error}} class="input-error"{{/if}}
+                type="password"
+                name="password"
+                id="password"
+                value="{{password}}"
+                placeholder="Type a strong password"
+            />
+        </div>
 
-    <button type="submit">Sign up</button>
-</form>
-<a href="/login">Are you already registered ?</a>
+        <button type="submit">Sign up</button>
+    </form>
+    <a href="/login">Are you already registered ?</a>
+
+</section>

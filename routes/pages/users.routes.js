@@ -1,23 +1,32 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../../models/User.model");
+const Tag = require("../../models/Tag.model");
 
-router.get("/:userId", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
     // profile consultation page
     try {
-        const user = req.session.currentUser.id;
-        const userLists = await User.find({});
-        res.render("saved/list-of-lists", { userLists });
+        console.log(req.session.currentUser);
+
+        // const tags = await Tags.find({ user: req.session.currentUser.id });
+
+        res.send(req.session.currentUser);
+        // res.render("user/profile");
     } catch (error) {
         next(error);
     }
 });
 
-router.get("/edit/:userId", (req, res, next) => {
+router.get("/edit/", (req, res, next) => {
     // profile edition page
+    try {
+        res.send(req.session.currentUser);
+    } catch (error) {
+        next(error);
+    }
 });
 
-router.post("/edit/:userId", (req, res, next) => {
+router.post("/edit/", (req, res, next) => {
     // profile edition form submission
 });
 

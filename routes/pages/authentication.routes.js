@@ -52,6 +52,7 @@ router.post(
                 id: userInDb.id,
                 email: userInDb.email,
                 username: userInDb.username,
+                photo: userInDb.photo,
             };
 
             hasFavorite(req, res, next);

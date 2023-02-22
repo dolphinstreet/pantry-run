@@ -11,6 +11,10 @@
       <link rel="stylesheet" href="/stylesheets/style.css" />
       <link rel="stylesheet" href="/stylesheets/nav.css" />
 
+      {{#each css}}
+         <link rel="stylesheet" href="{{this}}" />
+      {{/each}}
+
 
    <body>
       
@@ -20,6 +24,9 @@
       {{/if}}
 
       <script src="/js/script.js"></script>
+      {{#each scripts}}
+         <script src="{{this}}"></script>
+      {{/each}}
    </body>
 
 </html>

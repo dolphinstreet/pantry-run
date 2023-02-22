@@ -36,14 +36,15 @@ nav ul li {
 
 i {
   	font-size: 1.5rem;
-  	color:#75a0ff;
+  	color:#75a0ff
+;
 }
 
 .not-active{
 	display: none;
 }
 
-button {
+nav button {
   	border: none;
   	background: none;
   	position: relative;

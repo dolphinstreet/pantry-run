@@ -1,17 +1,77 @@
+:root{
+    --lightBlue:rgb(240, 245, 249);
+    --blue:#75a0ff;
+    --orange:#ffa668;
+}
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: rgb(240, 245, 249);
+  font: 14px "Poppins";
+  background-color: var(--lightBlue);
+  overflow-x: hidden;
 }
 
 a {
-  color: black;
   text-decoration: none;
+  color: var(--blue);
 }
-
 
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
+
+
+/*WELCOME PAGE----------------------------------------------------*/
+
+.welcome {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 15vh);
+}
+.welcome img {
+  width: 35vmin;
+  margin-bottom: 2rem;
+}
+.auth-buttons{
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+.auth-buttons a {
+  padding: 1rem 3rem;
+  border-radius: 10px;
+  text-align: center;
+
+}
+.signupBtn{
+  background-color: var(--orange);
+  color: white;
+}
+
+.loginBtn{
+  border: 2px solid var(--orange);
+}
+
+
+/*SIGN UP----------------------------------------------------*/
+
+#signup{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#signup img{
+  width: 20vmin;
+}
+
+
+
 

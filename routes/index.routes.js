@@ -2,6 +2,10 @@ const express = require("express");
 const { isLoggedIn, isLoggedOut } = require('./middlewares/auth.js');
 const router = express.Router();
 
+router.use((req, res, next) => {
+    res.locals.icon = "fa-regular fa-plus"
+    next()
+})
 /* GET home page */
 router.get("/", isLoggedOut, (req, res, next) => {
     res.render("welcome");

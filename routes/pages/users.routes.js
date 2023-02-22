@@ -8,8 +8,6 @@ router.get("/", async (req, res, next) => {
     try {
         console.log(req.session.currentUser);
 
-        // const tags = await Tags.find({ user: req.session.currentUser.id });
-
         res.send(req.session.currentUser);
         // res.render("user/profile");
     } catch (error) {

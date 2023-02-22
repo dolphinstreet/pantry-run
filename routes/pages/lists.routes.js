@@ -6,7 +6,6 @@ const Ingredient = require("../../models/Ingredient.model");
 const Category = require("../../models/Category.model");
 const Unit = require("../../models/Unit.model");
 const { isLoggedIn } = require("../middlewares/auth");
-const aggregate = require("../../utils/aggregate");
 
 //We are on based on /lists
 
@@ -84,14 +83,21 @@ router.get("/:listId", isLoggedIn, async (req, res, next) => {
 });
 
 router.get("/edit/:listId", isLoggedIn, async (req, res, next) => {
-    // display list edition form
     try {
-        //makeContentEditable()
-        res.send("ciao");
-        const id = req.params.listId;
         res.locals.navbar.icon = "fa-solid fa-check";
-        res.locals.navbar.link = `/lists/${id}`;
-        const list = await List.findById(id);
+        res.locals.navbar.link = `/lists/${req.params.listId}`;
+
+        // #TODO aggregate with mongoose
+        const list = await List.findById(req.params.listId)
+            .populate({
+                path: "rows.unit",
+                model: Unit,
+            })
+            .populate({
+                path: "rows.ingredient",
+                model: Ingredient,
+                populate: { path: "category", model: Category },
+            });
 
         res.render("lists/list-details", { list });
     } catch (error) {

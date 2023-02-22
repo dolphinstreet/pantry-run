@@ -1,0 +1,30 @@
+<section class="list-details">
+
+    <header class="list-header">
+        <div class="list-title">
+            {{#with list.favorite}}
+                <i class="fa-solid fa-star"></i>
+            {{/with}}
+            {{#unless list.favorite}}
+                <i class="fa-regular fa-star"></i>
+            {{/unless}}
+            <h1 id="list-name">{{list.name}}</h1>
+        </div>
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+    </header>
+
+    <div class="list">
+        <div class="ingredients-by-category">
+            {{#each list.rows}}
+                <div class="list-row">
+                    <p class="item-amount" contenteditable="true">{{amount}}</p>
+                    <p class="item-unit" contenteditable="true">{{unit.name}}</p>
+                    <p class="item-name" contenteditable="true">{{ingredient.name}}</p>
+                </div>
+            {{/each}}
+        </div>
+
+        <div class="checked-items"></div>
+    </div>
+
+</section>

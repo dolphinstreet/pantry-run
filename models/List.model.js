@@ -14,6 +14,10 @@ const listSchema = new Schema({
     rows: [
         {
             amount: Number,
+            checked: {
+                type: Boolean,
+                default: false,
+            },
             unit: {
                 type: Schema.Types.ObjectId,
                 ref: "Unit",

@@ -8,25 +8,23 @@
             {{#unless list.favorite}}
                 <i class="fa-regular fa-star"></i>
             {{/unless}}
-            <h1 contentEditable="false">{{list.name}}</h1>
+            <h1>{{list.name}}</h1>
         </div>
         <i class="fa-solid fa-ellipsis-vertical"></i>
     </header>
 
     <div class="list">
-        {{!-- {{#each list.rows.ingredient }} --}}
         <div class="ingredients-by-category">
-            <h4>{{list.rows.ingredient.category}}</h4>
             {{#each list.rows}}
                 <div class="list-row">
-                    <p contentEditable="false">{{amount}}</p>
-                    <p contentEditable="false">{{unit}}</p>
-                    <p contentEditable="false">{{ingredient.name}}</p>
+                    <p>{{amount}}</p>
+                    <p>{{unit.name}}</p>
+                    <p>{{ingredient.name}}</p>
                 </div>
             {{/each}}
         </div>
-        {{!-- {{/each}} --}}
 
+        <div class="checked-items"></div>
     </div>
 
 </section>

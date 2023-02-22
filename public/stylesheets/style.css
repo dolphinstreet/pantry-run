@@ -31,7 +31,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 12vh);
+  height: 100vh;
 }
 .welcome img {
   width: 35vmin;
@@ -127,4 +127,48 @@ label {
   border-bottom: 1px solid var(--redError) !important;
 }
 
+
+/*LIST DETAILS----------------------------------------------------*/
+.list-details{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.list-header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  align-self: flex-start;
+
+}
+
+.list-title{
+  display: flex;
+  gap: 0.2rem;
+}
+.list-row{
+    display:flex;
+    width: 80vmin;
+    background-color: rgba(128, 128, 128, 0.107);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.list-row p {
+  margin-right: 0.4rem;
+}
+
+.list-details i{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checked-items{
+  height: 100vh;
+  color: grey;
+  text-decoration: line-through;
+}
 

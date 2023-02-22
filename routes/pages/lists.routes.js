@@ -2,7 +2,11 @@ const express = require("express");
 const router = express.Router();
 const List = require("../../models/List.model");
 const User = require("../../models/User.model");
+const Ingredient = require("../../models/Ingredient.model");
+const Category = require("../../models/Category.model");
+const Unit = require("../../models/Unit.model");
 const { isLoggedIn } = require("../middlewares/auth");
+const aggregate = require("../../utils/aggregate");
 
 //We are on based on /lists
 
@@ -23,11 +27,56 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 router.get("/:listId", isLoggedIn, async (req, res, next) => {
     // display list details
     try {
-        const id = req.params.listId;
         res.locals.navbar.icon = "fa-regular fa-pen-to-square";
-        res.locals.navbar.link = `/lists/edit/${id}`;
-        const list = await List.findById(id);
+        res.locals.navbar.link = `/lists/edit/${req.params.listId}`;
 
+        // #TODO aggregate with mongoose
+        const list = await List.findById(req.params.listId)
+            .populate({
+                path: "rows.unit",
+                model: Unit,
+            })
+            .populate({
+                path: "rows.ingredient",
+                model: Ingredient,
+                populate: { path: "category", model: Category },
+            });
+        // aggregate for category listing
+        // const data = await List.findById(req.params.listId).aggregate([
+        //     { $unwind: "$rows" },
+        //     {
+        //         $lookup: {
+        //             from: "ingredients",
+        //             localField: "rows.ingredient",
+        //             foreignField: "_id",
+        //             as: "ingredient",
+        //         },
+        //     },
+        //     {
+        //         $lookup: {
+        //             from: "categories",
+        //             localField: "ingredient.category",
+        //             foreignField: "_id",
+        //             as: "category",
+        //         },
+        //     },
+        //     {
+        //         //wrong, need accumulator
+        //         $group: {
+        //             _id: category._id,
+        //             name: "$category".name,
+        //             ingredients: {
+        //                 $push: "$rows",
+        //             },
+        //         },
+        //     },
+        // ]);
+        // .populate({
+        //     path: "rows.unit",
+        //     model: Unit,
+        // });
+
+        // data.rows = aggregate(data.rows, ["ingredient", "category"]);
         res.render("lists/list-details", { list });
     } catch (error) {
         next(error);
@@ -55,36 +104,3 @@ router.post("/edit/:listId", isLoggedIn, (req, res, next) => {
 });
 
 module.exports = router;
-
-// const anotherList = {
-//     name: "Delfina's testing list",
-//     favorite: false,
-//     template: false,
-//     rows: [
-//         {
-//             amount: 500, unit: "g", ingredient: {
-//                 name: "Boeuf",
-//                 category: "Meat"
-//             },
-//         },
-//         {
-//             amount: 2, unit: "", ingredient: {
-//                 name: "Courgette",
-//                 category: "Fresh produce"
-//             },
-//         },
-//         {
-//             amount: 10, unit: "", ingredient: {
-//                 name: "Beer",
-//                 category: "Alcohol"
-//             }
-//         },
-//         {
-//             amount: 150, unit: "g", ingredient: {
-//                 name: "Steak",
-//                 category: "Meat"
-//             }
-//         }
-//     ],
-//     user: req.session.currentUser.id
-// }

@@ -55,7 +55,7 @@ router.get("/edit/:listId", async (req, res, next) => {
                 populate: { path: "category", model: Category },
             });
 
-        res.render("lists/list-edit", { list });
+        res.render("saved/list-edit", { list });
     } catch (error) {
         next(error);
     }

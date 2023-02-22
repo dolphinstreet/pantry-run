@@ -1,10 +1,9 @@
 const List = require("../../models/List.model");
 
-
 // checks if the user is logged in when trying to access the page
 const isLoggedIn = (req, res, next) => {
     if (!req.session.currentUser) {
-        return res.redirect('/login');
+        return res.redirect("/login");
     }
     next();
 };
@@ -13,7 +12,7 @@ const isLoggedIn = (req, res, next) => {
 // redirects the user to the favorite list page or lists page
 const isLoggedOut = (req, res, next) => {
     if (req.session.currentUser) {
-        return hasFavorite(req, res, next)
+        return hasFavorite(req, res, next);
     }
     next();
 };
@@ -21,9 +20,12 @@ const isLoggedOut = (req, res, next) => {
 //Check if the user has a favorite liste or not and redirects
 const hasFavorite = async (req, res, next) => {
     if (!req.session.favoriteList) {
-        const favoriteList = await List.findOne({ favorite: true, user: req.session.currentUser.id })
+        const favoriteList = await List.findOne({
+            favorite: true,
+            user: req.session.currentUser.id,
+        });
         if (favoriteList) {
-            req.session.favoriteList = favoriteList.id
+            req.session.favoriteList = favoriteList.id;
         }
     }
     if (req.session.favoriteList) {
@@ -31,7 +33,7 @@ const hasFavorite = async (req, res, next) => {
     } else {
         res.redirect("/lists");
     }
-}
+};
 /**
  * Check if the field is filled in form
  * @param {String} field form input name in request
@@ -41,7 +43,7 @@ const hasFavorite = async (req, res, next) => {
 function requiredField(field, value, res) {
     if (!value) {
         if (!res.locals.errors) {
-            res.locals.errors = {}
+            res.locals.errors = {};
         }
         res.locals.errors[field] = `Don't forget the ${field} !`;
     } else {
@@ -56,19 +58,18 @@ const loginFormValidation = (req, res, next) => {
     const actualEmail = req.body.email;
     const actualPassword = req.body.password;
 
-    requiredField("email", actualEmail, res)
-    requiredField("password", actualPassword, res)
+    requiredField("email", actualEmail, res);
+    requiredField("password", actualPassword, res);
 
     res.locals.email = actualEmail;
     res.locals.password = "";
 
     if (res.locals.errors !== undefined) {
-        return res.render("auth/login")
+        return res.render("auth/login");
     } else {
-        next()
+        next();
     }
-}
-
+};
 
 //Validation for signup filled fields
 const signupFormValidation = (req, res, next) => {
@@ -77,38 +78,38 @@ const signupFormValidation = (req, res, next) => {
     const actualUsername = req.body.username;
     res.locals.errors = {};
 
-    const emailField = requiredField("email", actualEmail, res)
-    const pwdField = requiredField("password", actualPassword, res)
-    const usernaemField = requiredField("username", actualUsername, res)
+    const emailField = requiredField("email", actualEmail, res);
+    const pwdField = requiredField("password", actualPassword, res);
+    const usernaemField = requiredField("username", actualUsername, res);
 
     //Checks for email validation
-    console.log("email field is :", emailField)
-    if (emailField && !actualEmail.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+    if (
+        emailField &&
+        !actualEmail.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+    ) {
         res.locals.errors["email"] = `This isn't an email !`;
     }
     //Checks for password security
     if (pwdField && actualPassword.length < 8) {
-        res.locals.errors["password"] = `The password must be at least 8 characters long !`;
+        res.locals.errors[
+            "password"
+        ] = `The password must be at least 8 characters long !`;
     }
     res.locals.email = actualEmail;
     res.locals.username = actualUsername;
     res.locals.password = "";
 
     if (Object.keys(res.locals.errors).length > 0) {
-        return res.render("auth/signup")
+        return res.render("auth/signup");
     } else {
-        next()
+        next();
     }
-
-}
-
-
-
+};
 
 module.exports = {
     isLoggedIn,
     isLoggedOut,
     hasFavorite,
     loginFormValidation,
-    signupFormValidation
+    signupFormValidation,
 };

@@ -107,6 +107,7 @@ router.get("/edit/:listId", isLoggedIn, async (req, res, next) => {
 
 router.post("/edit/:listId", isLoggedIn, (req, res, next) => {
     // list edition form submission
+    res.send(req.body);
 });
 
 module.exports = router;

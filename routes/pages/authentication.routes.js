@@ -33,7 +33,7 @@ router.post(
 
             if (!userInDb) {
                 return res.render("auth/login", {
-                    error: "You never registered with this email !",
+                    error: "The email or/and the password are wrong !",
                 });
             }
             // Check if it's the right password
@@ -44,7 +44,7 @@ router.post(
 
             if (!samePasswords) {
                 return res.render("auth/login", {
-                    error: "The username or/and the email are wrong !",
+                    error: "The email or/and the password are wrong !",
                 });
             }
             //set the user to be the session user without the password for security reasons

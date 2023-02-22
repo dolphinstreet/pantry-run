@@ -101,6 +101,8 @@ const seedIngredients = async () => {
             return;
         }
 
+        await seedCategories();
+
         const dbReady = await getCategoryIds(ingredients);
         const createdIngredients = await Ingredient.create(dbReady);
         console.log(`Created ${createdIngredients.length} ingredients`);

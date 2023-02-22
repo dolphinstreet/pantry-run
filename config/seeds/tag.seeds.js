@@ -1,8 +1,13 @@
 const seedUsers = require("./user.seeds");
 const Tag = require("../../models/Tag.model");
-const User = require("../../models/User.model");
+const { addUser } = require("./utils");
 
-const tags = ["Dinner", "Lunch", "Breakfast", "Italian"];
+let tags = [
+    { name: "Dinner", order: 1 },
+    { name: "Lunch", order: 2 },
+    { name: "Breakfast", order: 3 },
+    { name: "Italian", order: 4 },
+];
 
 const seedTags = async () => {
     try {
@@ -11,19 +16,10 @@ const seedTags = async () => {
             return;
         }
 
-        seedUsers();
+        await seedUsers();
+        tags = await addUser(tags);
 
-        const defaultUser = await User.findOne().exec();
-
-        const dbReady = tags.map((tag, idx) => {
-            return {
-                name: tag,
-                order: idx,
-                user: defaultUser.id,
-            };
-        });
-
-        const createdTags = await Tag.create(dbReady);
+        const createdTags = await Tag.create(tags);
         console.log(`Created ${createdTags.length} tags`);
     } catch (error) {
         console.error(

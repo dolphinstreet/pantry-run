@@ -5,6 +5,7 @@ const seedCategories = require("./category.seeds");
 const seedUnits = require("./unit.seeds");
 const seedIngredients = require("./ingredient.seeds");
 const seedTags = require("./tag.seeds");
+const seedLists = require("./list.seeds");
 
 async function seedDatabase() {
     try {
@@ -18,6 +19,7 @@ async function seedDatabase() {
         await seedUnits();
         await seedIngredients();
         await seedTags();
+        await seedLists();
 
         await mongoose.disconnect();
         console.log(`Succesfully disconnected from ${db.connection.name}`);

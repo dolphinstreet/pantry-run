@@ -5,7 +5,7 @@ const units = [{ name: "kg" }, { name: "g" }, { name: "L" }, { name: "mL" }];
 const seedUnits = async () => {
     try {
         if ((await Unit.count()) > 0) {
-            console.log("Units already seeded, nothing to do here");
+            console.log("Aborting: Units are already seeded");
             return;
         }
 

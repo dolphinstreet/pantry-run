@@ -27,7 +27,7 @@ const categories = [
 const seedCategories = async () => {
     try {
         if ((await Category.count()) > 0) {
-            console.log("Categories already seeded, nothing to do here");
+            console.log("Aborting: Categories are already seeded");
             return;
         }
 

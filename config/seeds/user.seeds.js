@@ -12,7 +12,7 @@ const users = [
 const seedUsers = async () => {
     try {
         if ((await User.count()) > 0) {
-            console.log("Users already seeded, nothing to do here");
+            console.log("Aborting: Users are already seeded");
             return;
         }
 

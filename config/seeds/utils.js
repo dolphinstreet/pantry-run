@@ -65,7 +65,6 @@ async function createInexistantEntries(needed, existing, model) {
 async function fetchIdsForRows(rows) {
     try {
         const fields = getFieldsLists(rows);
-        // console.log("aggregator:", fields);
 
         const units = await nameIndexedIds(Unit, fields.units);
         const ingredients = await nameIndexedIds(

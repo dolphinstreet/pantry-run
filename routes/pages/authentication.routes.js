@@ -67,7 +67,7 @@ router.post("/signup", isLoggedOut, signupFormValidation, async (req, res, next)
         //Check if it's already registered
         const alreaydAnUser = await User.findOne({ email: actualEmail })
         if (alreaydAnUser) {
-            return res.render("auth/signup", { errorEmail: "This email is already in use", password: actualUsername, username: actualUsername })
+            return res.render("auth/signup", { error: "This email is already in use", username: actualUsername })
         }
 
         //Let's hash the password 

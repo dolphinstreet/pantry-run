@@ -18,7 +18,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    photo: String
+    photo: {
+        type: String,
+        default: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+    }
 },
     {
         // this second object adds extra properties: `createdAt` and `updatedAt`    

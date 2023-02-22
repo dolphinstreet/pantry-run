@@ -5,7 +5,6 @@ const listSchema = new Schema({
     name: {
         type: String,
         trim: true,
-        required: false,
     },
     favorite: {
         type: Boolean,

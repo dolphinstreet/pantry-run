@@ -13,7 +13,7 @@ const isLoggedIn = (req, res, next) => {
 // redirects the user to the favorite list page or lists page
 const isLoggedOut = (req, res, next) => {
     if (req.session.currentUser) {
-        hasFavorite(req, res, next)
+        return hasFavorite(req, res, next)
     }
     next();
 };
@@ -44,10 +44,11 @@ function requiredField(field, value, res) {
             res.locals.errors = {}
         }
         res.locals.errors[field] = `Don't forget the ${field} !`;
-        //console.log(res.errors[field])
     } else {
         res.locals[field] = value;
+        return true;
     }
+    return false;
 }
 
 //Validation for login
@@ -74,24 +75,26 @@ const signupFormValidation = (req, res, next) => {
     const actualEmail = req.body.email;
     const actualPassword = req.body.password;
     const actualUsername = req.body.username;
+    res.locals.errors = {};
 
-    requiredField("email", actualEmail, res)
-    requiredField("password", actualPassword, res)
-    requiredField("username", actualUsername, res)
+    const emailField = requiredField("email", actualEmail, res)
+    const pwdField = requiredField("password", actualPassword, res)
+    const usernaemField = requiredField("username", actualUsername, res)
 
     //Checks for email validation
-    if (!res.locals.errors.email && !actualEmail.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+    console.log("email field is :", emailField)
+    if (emailField && !actualEmail.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
         res.locals.errors["email"] = `This isn't an email !`;
     }
     //Checks for password security
-    if (!res.locals.errors.password && actualPassword.length < 8) {
+    if (pwdField && actualPassword.length < 8) {
         res.locals.errors["password"] = `The password must be at least 8 characters long !`;
     }
     res.locals.email = actualEmail;
     res.locals.username = actualUsername;
     res.locals.password = "";
 
-    if (res.locals.errors !== undefined) {
+    if (Object.keys(res.locals.errors).length > 0) {
         return res.render("auth/signup")
     } else {
         next()

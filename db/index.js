@@ -6,15 +6,16 @@ const mongoose = require("mongoose");
 // If no env has been set, we dynamically set it to whatever the folder name was upon the creation of the app
 
 const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/pantry-run";
+    process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/pantry-run";
 
-mongoose
-  .set("strictQuery", false)
-  .connect(MONGO_URI)
-  .then((x) => {
-    const databaseName = x.connections[0].name;
-    console.log(`Connected to Mongo! Database name: "${databaseName}"`);
-  })
-  .catch((err) => {
-    console.error("Error connecting to mongo: ", err);
-  });
+async function openConnection() {
+    try {
+        return await mongoose.set("strictQuery", false).connect(MONGO_URI);
+    } catch (error) {
+        console.error(
+            `Error while connecting to the database: ${error.message}`
+        );
+    }
+}
+
+module.exports = openConnection;

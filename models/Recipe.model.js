@@ -5,43 +5,49 @@ const recipeSchema = new Schema({
     title: {
         type: String,
         trim: true,
-        required: false,
+        required: true,
+    },
+    serves: {
+        type: Number,
+        default: 1,
     },
     recipeLink: {
         type: String,
-        trim: true
+        trim: true,
     },
     photo: String,
-    rows: [{
-        amount: Number,
-        unit: {
-            type: String,
-            enum: ["", "kg", "g", "L", "mL"],
-            default: ""
+    rows: [
+        {
+            amount: Number,
+            unit: {
+                type: Schema.Types.ObjectId,
+                ref: "Unit",
+            },
+            ingredient: {
+                type: Schema.Types.ObjectId,
+                ref: "Ingredient",
+                required: true,
+            },
         },
-        ingredient: {
-            type: Schema.Types.ObjectId,
-            ref: "Ingredient",
-            required: true
-        }
-    }],
+    ],
     steps: {
         name: String,
-        description: String
+        description: String,
     },
     tags: {
-        type: [{
-            type: Schema.Types.ObjectId,
-            ref: "Tag",
-        }],
-        validate: [arrayLimit, '{PATH} exceeds the limit of 5']
+        type: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Tag",
+            },
+        ],
+        validate: [arrayLimit, "{PATH} exceeds the limit of 5"],
     },
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",
-        required: true
-    }
-
+        required: true,
+    },
 });
 
 function arrayLimit(val) {

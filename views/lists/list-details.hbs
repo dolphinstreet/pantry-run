@@ -1,4 +1,4 @@
-<section class="list-details">
+<section class="list-details" data-id="{{list.id}}">
 
     <header class="list-header">
         <div class="list-title">
@@ -16,10 +16,10 @@
     <div class="list">
         <div class="ingredients-by-category">
             {{#each list.rows}}
-                <div class="list-row">
-                    <p>{{amount}}</p>
-                    <p>{{unit.name}}</p>
-                    <p>{{ingredient.name}}</p>
+                <div class="list-row" data-id="{{id}}" data-checked="{{checked}}">
+                    <p class="row-amount">{{amount}}</p>
+                    <p class="row-unit" data-id="{{unit.id}}">{{unit.name}}</p>
+                    <p class="row-ingredient" data-id="{{ingredient.id}}">{{ingredient.name}}</p>
                 </div>
             {{/each}}
         </div>

@@ -1,34 +1,41 @@
-<h1>Login</h1>
+<section id="login">
+    <img src="./images/pantryRun-logo.png" alt="pantry run logo" />
+    <form action="/login" method="POST">
+        <div class="input-container">
+            <label for="email">Email</label>
+        {{#if errors.email}}<p class="errorMessage">{{errors.email}}</p>{{/if}}
+        {{#if error}}<p class="errorMessage">{{error}}</p>{{/if}}
+            <input
+                {{#if errors.email}} class="input-error"{{/if}}
+                {{#if error}} class="input-error"{{/if}}
+                type="email"
+                name="email"
+                id="email"
+                value="{{email}}"
+                placeholder="name@example.com"
+            />
+        </div>
 
-<form action="/login" method="POST">
-    {{#if errors.email}}<p class="errorMessage">{{errors.email}}</p>{{/if}}
-    {{#if error}}<p class="errorMessage">{{error}}</p>{{/if}}
-    <div>
-        <label for="email">Email</label>
-        <input
-            type="email"
-            name="email"
-            id="email"
-            value="{{email}}"
-            placeholder="name@example.com"
-        />
-    </div>
-    {{#if errors.password}}<p
-            class="errorMessage"
-        >{{errors.password}}</p>{{/if}}
-    {{#if errorPassword}}<p class="errorMessage">{{errorPassword}}</p>{{/if}}
-
-    <div>
-        <label for="password">Password</label>
-        <input
-            type="password"
-            name="password"
-            id="password"
-            value="{{password}}"
-            placeholder="Password"
-        />
-    </div>
-    <button type="submit">Login</button>
-</form>
-<a href="/signup">Not registered yet ? Sign Up !</a>
-<a href="/reset-password">Forgot password</a>
+        <div class="input-container">
+            <label for="password">Password</label>
+        {{#if errors.password}}<p
+                class="errorMessage"
+            >{{errors.password}}</p>{{/if}}
+        {{#if errorPassword}}<p
+                class="errorMessage"
+            >{{errorPassword}}</p>{{/if}}
+            <input
+                {{#if errors.password}} class="input-error"{{/if}}
+                {{#if errorPassword}} class="input-error"{{/if}}
+                type="password"
+                name="password"
+                id="password"
+                value="{{password}}"
+                placeholder="Password"
+            />
+            <a href="/reset-password" id="reset-password">Forgot password ?</a>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <a href="/signup" id="signup-link">Not registered yet ? Sign Up !</a>
+</section>

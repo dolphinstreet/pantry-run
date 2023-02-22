@@ -2,6 +2,8 @@
     --lightBlue:rgb(240, 245, 249);
     --blue:#75a0ff;
     --orange:#ffa668;
+    --black: #27272c;
+    --redError:rgb(219, 92, 92);
 }
 body {
   font: 14px "Poppins";
@@ -29,7 +31,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 15vh);
+  height: calc(100vh - 12vh);
 }
 .welcome img {
   width: 35vmin;
@@ -58,20 +60,71 @@ a {
 }
 
 
-/*SIGN UP----------------------------------------------------*/
+/*SIGN UP & LOGIN----------------------------------------------------*/
 
-#signup{
-  height: 100vh;
+#signup, #login{
+  height: calc(100vh - 12vh);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-#signup img{
+#signup img, #login img{
   width: 20vmin;
+  margin-bottom: 2rem;
 }
 
+.input-container{
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  margin-bottom: 1rem;
+}
+.input-container input{
+  all: unset;
+  border-bottom: 1px solid var(--blue);
+  height: 2rem;
+  width: 14rem;
+} 
 
+::placeholder {
+  color: rgba(0, 0, 0, 0.266);
+}
+
+form button{
+  all: unset;
+  display: block;
+  width: 100%;
+  margin: 1.2rem 0 0.8rem 0;
+  padding: 0.4rem 0;
+  background-color: var(--orange);
+  color: var(--black);
+  text-align: center;
+  border-radius: 10px;
+}
+
+label {
+  color: var(--black);
+}
+
+#signup a, #signup-link{
+  text-decoration: underline;
+  font-size: 0.6rem;
+}
+
+#reset-password{
+  font-size: 0.6rem;
+  text-align: right;
+}
+
+.errorMessage{
+  color: var(--redError);
+  font-size: 0.6rem;
+}
+
+.input-error{
+  border-bottom: 1px solid var(--redError) !important;
+}
 
 

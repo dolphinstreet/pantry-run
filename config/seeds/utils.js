@@ -13,7 +13,7 @@ async function addUser(array) {
     } catch (error) {
         console.log(
             "something went wrong when adding user to list",
-            erorr.message
+            error.message
         );
     }
 }

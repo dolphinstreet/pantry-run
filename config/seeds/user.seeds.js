@@ -1,4 +1,5 @@
 const User = require("../../models/User.model");
+const bcrypt = require("bcryptjs");
 
 const users = [
     {
@@ -14,6 +15,13 @@ const seedUsers = async () => {
         if ((await User.count()) > 0) {
             console.log("Aborting: Users are already seeded");
             return;
+        }
+        const salt = await bcrypt.genSalt(10);
+
+        for (user of users) {
+            if (user.password) {
+                user.password = await bcrypt.hash(user.password, salt);
+            }
         }
 
         const createdUsers = await User.create(users);

@@ -11,7 +11,7 @@ const { isLoggedIn } = require("../middlewares/auth");
 
 router.get("/", isLoggedIn, async (req, res, next) => {
     try {
-        // // display all lists
+        // display all lists
 
         const user = req.session.currentUser.id;
         const userLists = await List.find({
@@ -99,7 +99,7 @@ router.get("/edit/:listId", isLoggedIn, async (req, res, next) => {
                 populate: { path: "category", model: Category },
             });
 
-        res.render("lists/list-details", { list });
+        res.render("lists/list-edit", { list });
     } catch (error) {
         next(error);
     }

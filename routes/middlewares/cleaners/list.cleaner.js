@@ -12,7 +12,7 @@ const cleanListForUpdate = async (req, res, next) => {
     }
 
     if (req.body.rows) {
-        for (row of rew.body.rows) {
+        for (row of req.body.rows) {
             try {
                 row.unit = cleanUnit(row.unit);
                 if (row.unit) {

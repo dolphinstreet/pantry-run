@@ -9,7 +9,6 @@ const users = [
         photo: "images/dummy-user.jpeg"
     },
 ];
-console.log(users)
 const seedUsers = async () => {
     try {
         if ((await User.count()) > 0) {

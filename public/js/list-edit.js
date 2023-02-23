@@ -61,6 +61,9 @@ addbutton.addEventListener("click", (event) => {
     const clone = rowTemplate.content.cloneNode(true);
     clone.querySelector(".item-name").textContent = searchBar.value;
     initSlider(clone.querySelector(".swipe-item"));
+
+    clone.querySelector(".reveal-right").addEventListener("click", deleteRow)
+
     uncheckedDiv.prepend(clone);
     searchBar.value = "";
 });
@@ -68,21 +71,11 @@ addbutton.addEventListener("click", (event) => {
 
 
 deleteButton.forEach(el =>
-    el.addEventListener("click", (event) => {
-        const row = event.currentTarget.closest(".swipe-container")
-        const listId = list.dataset.id;
-        row.remove()
+    el.addEventListener("click", deleteRow)
+)
 
-
-
-        console.log(listId)
-
-        axios
-            .delete(`/lists/:listId`, listId)
-        // .then((res) => {
-        //     window.location.href = redirect;
-        // })
-        // .catch((error) => {
-        //     console.error(error);
-        // });
-    }))
+function deleteRow(event) {
+    const row = event.currentTarget.closest(".swipe-container")
+    const listId = list.dataset.id;
+    row.remove()
+}

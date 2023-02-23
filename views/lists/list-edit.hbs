@@ -3,12 +3,12 @@
     <header class="list-header">
         <div class="list-title">
             <div class="title">
-                {{#with list.favorite}}
-                    <i class="fa-solid fa-star"></i>
-                {{/with}}
-                {{#unless list.favorite}}
-                    <i class="fa-regular fa-star"></i>
-                {{/unless}}
+                {{#if list.favorite}}
+                    <i data-id="{{list.id}}" class="fa-solid fa-star"></i>
+                {{else}}
+                    <i data-id="{{list.id}}" class="fa-regular fa-star"></i>
+                {{/if}}
+
                 <h1 id="list-name" contenteditable="true">{{list.name}}</h1>
             </div>
             <i class="fa-solid fa-ellipsis-vertical"></i>

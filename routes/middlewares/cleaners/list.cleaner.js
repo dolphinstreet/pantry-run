@@ -4,7 +4,7 @@ const { updateUnits } = require("../../../utils/unit");
 const { updateIngredients } = require("../../../utils/ingredient");
 const { default: mongoose } = require("mongoose");
 
-const cleanListForUpdate = async (req, res, next) => {
+const cleanList = async (req, res, next) => {
     try {
         if ("_id" in req.body) {
             if (!mongoose.Types.ObjectId.isValid(req.body._id)) {
@@ -16,6 +16,8 @@ const cleanListForUpdate = async (req, res, next) => {
         }
 
         if (req.body.rows) {
+            const cleanRows = [];
+
             for (row of req.body.rows) {
                 if (!row.amount) {
                     row.amount = 0;
@@ -39,14 +41,11 @@ const cleanListForUpdate = async (req, res, next) => {
                     row.ingredient = await updateIngredients(row.ingredient);
                     if (row.ingredient) {
                         row.ingredient = row.ingredient.id;
-                    } else {
-                        delete row;
+                        cleanRows.push(row);
                     }
                 }
-                if ("ingredient" in row && !row.ingredient) {
-                    delete row.ingredient;
-                }
             }
+            req.body.rows = cleanRows;
         }
 
         if (req.body.favorite !== undefined) {
@@ -67,5 +66,5 @@ const cleanListForUpdate = async (req, res, next) => {
 };
 
 module.exports = {
-    cleanListForUpdate,
+    cleanList,
 };

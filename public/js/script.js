@@ -6,7 +6,9 @@ function favoriteOnTop() {
         const favoriteList = document
             .querySelector(".fa-solid")
             .closest(".list-element");
-        listOfList.prepend(favoriteList);
+        if (favoriteList) {
+            listOfList.prepend(favoriteList);
+        }
     }
 }
 

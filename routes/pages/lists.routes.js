@@ -7,11 +7,12 @@ const Category = require("../../models/Category.model");
 const Unit = require("../../models/Unit.model");
 const { isLoggedIn } = require("../middlewares/auth");
 
-//We are on based on /lists
+// Route prefix : /lists
 
 router.get("/", isLoggedIn, async (req, res, next) => {
     try {
         // display all lists
+        res.locals.navbar.link = "/lists/create";
 
         const user = req.session.currentUser.id;
         const userLists = await List.find({
@@ -23,7 +24,35 @@ router.get("/", isLoggedIn, async (req, res, next) => {
     }
 });
 
-router.get("/:listId", isLoggedIn, async (req, res, next) => {
+router.get("/create", (req, res, next) => {
+    try {
+        res.locals.navbar.link = `/lists`;
+        res.locals.scripts = ["/js/list-edit.js"];
+        res.locals.list = {
+            name: "New List",
+        };
+
+        res.render("lists/list-edit");
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.post("/create", (req, res, next) => {
+    try {
+        res.locals.navbar.link = `/lists`;
+        res.locals.scripts = ["/js/list-edit.js"];
+        res.locals.list = {
+            name: "New List",
+        };
+
+        res.render("lists/list-edit");
+    } catch (error) {
+        next(error);
+    }
+});
+
+router.get("/:listId", async (req, res, next) => {
     // display list details
     try {
         res.locals.navbar.icon = "fa-regular fa-pen-to-square";
@@ -41,40 +70,6 @@ router.get("/:listId", isLoggedIn, async (req, res, next) => {
                 model: Ingredient,
                 populate: { path: "category", model: Category },
             });
-        // aggregate for category listing
-        // const data = await List.findById(req.params.listId).aggregate([
-        //     { $unwind: "$rows" },
-        //     {
-        //         $lookup: {
-        //             from: "ingredients",
-        //             localField: "rows.ingredient",
-        //             foreignField: "_id",
-        //             as: "ingredient",
-        //         },
-        //     },
-        //     {
-        //         $lookup: {
-        //             from: "categories",
-        //             localField: "ingredient.category",
-        //             foreignField: "_id",
-        //             as: "category",
-        //         },
-        //     },
-        //     {
-        //         //wrong, need accumulator
-        //         $group: {
-        //             _id: category._id,
-        //             name: "$category".name,
-        //             ingredients: {
-        //                 $push: "$rows",
-        //             },
-        //         },
-        //     },
-        // ]);
-        // .populate({
-        //     path: "rows.unit",
-        //     model: Unit,
-        // });
 
         res.render("lists/list-details", { list });
     } catch (error) {
@@ -82,7 +77,7 @@ router.get("/:listId", isLoggedIn, async (req, res, next) => {
     }
 });
 
-router.get("/edit/:listId", isLoggedIn, async (req, res, next) => {
+router.get("/edit/:listId", async (req, res, next) => {
     try {
         res.locals.navbar.icon = "fa-solid fa-check";
         res.locals.navbar.link = `/lists/${req.params.listId}`;
@@ -106,12 +101,12 @@ router.get("/edit/:listId", isLoggedIn, async (req, res, next) => {
     }
 });
 
-router.patch("/edit/:listId", isLoggedIn, (req, res, next) => {
+router.patch("/edit/:listId", (req, res, next) => {
     // list edition form submission
     res.send(req.body);
 });
 
-router.post("/", isLoggedIn, (req, res, next) => {
+router.post("/", (req, res, next) => {
     try {
         //create new list
     } catch (error) {

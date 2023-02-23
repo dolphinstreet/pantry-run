@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 async function createOrUpdateIngredient(ingredient) {
     try {
+        console.log("updating", ingredient);
         if (ingredient._id) {
             const updatedIngredient = await Ingredient.findByIdAndUpdate(
                 ingredient._id,
@@ -13,7 +14,7 @@ async function createOrUpdateIngredient(ingredient) {
             }
             delete ingredient._id;
         }
-        const existingIngredient = await Ingredient.find({
+        const existingIngredient = await Ingredient.findOne({
             name: { $regex: new RegExp(ingredient.name, "i") },
         });
         if (existingIngredient) {

@@ -24,7 +24,7 @@
             {{#each list.rows}}
                 <div class="list-row">
                     {{! <div class="content"> }}
-                    <p class="item-amount" contenteditable="true">{{amount}}</p>
+                    <p class="item-amount" contenteditable="true">{{#if amount}}{{amount}}{{/if}}</p>
                     <p
                         class="item-unit"
                         contenteditable="true"
@@ -44,8 +44,8 @@
 
 <template id="template">
     <div class="list-row">
-        <p class="item-amount" contenteditable="true">0</p>
-        <p class="item-unit" contenteditable="true">0</p>
+        <p class="item-amount" contenteditable="true"></p>
+        <p class="item-unit" contenteditable="true"></p>
         <p class="item-name" contenteditable="true"></p>
     </div>
 </template>

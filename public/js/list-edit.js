@@ -1,4 +1,3 @@
-const listRow = document.querySelectorAll(".list-row");
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
 const listId = document.querySelector(".list").dataset.id;
 const title = document.querySelector("h1");
@@ -11,6 +10,7 @@ const addbutton = document.querySelector(".fa-plus");
 const searchBar = document.querySelector("input[name=search]");
 
 saveButton.addEventListener("click", async function (event) {
+    const listRow = document.querySelectorAll(".list-row");
     event.preventDefault();
     const redirect = event.currentTarget.href;
     console.log(editableElements);

@@ -1,7 +1,7 @@
 const cleanUnit = require("./unit.cleaner");
 const cleanIngredient = require("./ingredient.cleaner");
-const { createOrUpdateUnit } = require("../../../utils/unit");
-const { createOrUpdateIngredient } = require("../../../utils/ingredient");
+const { updateUnits } = require("../../../utils/unit");
+const { updateIngredients } = require("../../../utils/ingredient");
 
 const cleanListForUpdate = async (req, res, next) => {
     try {
@@ -20,9 +20,11 @@ const cleanListForUpdate = async (req, res, next) => {
                 row.unit = cleanUnit(row.unit);
 
                 if (row.unit) {
-                    row.unit = await createOrUpdateUnit(row.unit);
+                    row.unit = await updateUnits(row.unit);
                     if (row.unit) {
                         row.unit = row.unit.id;
+                    } else {
+                        delete row.unit;
                     }
                 }
                 if ("unit" in row && !row.unit) {
@@ -31,11 +33,11 @@ const cleanListForUpdate = async (req, res, next) => {
 
                 row.ingredient = cleanIngredient(row.ingredient);
                 if (row.ingredient) {
-                    row.ingredient = await createOrUpdateIngredient(
-                        row.ingredient
-                    );
+                    row.ingredient = await updateIngredients(row.ingredient);
                     if (row.ingredient) {
                         row.ingredient = row.ingredient.id;
+                    } else {
+                        delete row;
                     }
                 }
                 if ("ingredient" in row && !row.ingredient) {

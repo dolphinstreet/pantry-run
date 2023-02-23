@@ -7,10 +7,20 @@ router.get("/", (req, res, next) => {
     // Return user's current lists
 });
 
-router.post("/", cleanList, (req, res, next) => {
+router.post("/", cleanList, async (req, res, next) => {
     try {
         req.body.user = req.session.currentUser.id;
-        const newList = List.create(req.body);
+
+        const favoriteList = await List.count({
+            favorite: true,
+            user: req.body.user,
+        }).exec();
+
+        if (!favoriteList) {
+            req.body.favorite = true;
+        }
+
+        const newList = await List.create(req.body);
         res.status(200).send(newList.id);
     } catch (error) {
         next(error);

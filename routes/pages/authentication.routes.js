@@ -97,7 +97,12 @@ router.post(
             };
             //Add the user to the database
             const newUser = await User.create(userToCreate);
-            req.session.currentUser = newUser;
+            req.session.currentUser = {
+                id: newUser.id,
+                email: newUser.email,
+                username: newUser.username,
+                photo: newUser.photo,
+            };
 
             res.redirect("lists");
         } catch (error) {

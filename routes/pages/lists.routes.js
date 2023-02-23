@@ -1,17 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const List = require("../../models/List.model");
-const User = require("../../models/User.model");
 const Ingredient = require("../../models/Ingredient.model");
 const Category = require("../../models/Category.model");
 const Unit = require("../../models/Unit.model");
-const { isLoggedIn } = require("../middlewares/auth");
 
-// Route prefix : /lists
+// Route prefix: /lists
 
 router.get("/", async (req, res, next) => {
+    // display all lists
     try {
-        // display all lists
         res.locals.navbar.link = "/lists/create";
 
         const user = req.session.currentUser.id;
@@ -31,6 +29,7 @@ router.get("/create", (req, res, next) => {
         res.locals.scripts = ["/js/list-create.js"];
         res.locals.list = {
             name: "New List",
+            template: false,
         };
 
         res.render("lists/list-edit");

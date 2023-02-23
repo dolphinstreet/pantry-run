@@ -52,10 +52,6 @@ const cleanList = async (req, res, next) => {
             // alter favorite
         }
 
-        if ("template" in req.body) {
-            delete req.body.template;
-        }
-
         if ("user" in req.body) {
             delete req.body.user;
         }

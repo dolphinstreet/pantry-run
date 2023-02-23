@@ -1,5 +1,5 @@
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
-const listId = document.querySelector(".list").dataset.id;
+const list = document.querySelector(".list");
 const title = document.querySelector("h1");
 
 const editableElements = document.querySelectorAll("[contenteditable=true]");
@@ -15,8 +15,9 @@ saveButton.addEventListener("click", function (event) {
     const listRow = document.querySelectorAll(".list-row");
     const redirect = event.currentTarget.href;
     const listInfo = {
-        "_id": listId, //id de la liste,
+        "_id": list.dataset.id, //id de la liste,
         name: title.innerText,
+        template: list.dataset.template === "true",
         //favorite: favorite.classList.contains("fa-solid"),
         rows: [],
     };

@@ -1,32 +1,62 @@
-<section class="list-details">
+<section class="list-details" data-id="{{list.id}}">
 
     <header class="list-header">
         <div class="list-title">
-            {{#if list.favorite}}
-                <i data-id="{{list.id}}" class="fa-solid fa-star"></i>
-            {{else}}
-                <i data-id="{{list.id}}" class="fa-regular fa-star"></i>
-            {{/if}}
-
-            <h1 contentEditable="false">{{list.name}}</h1>
+            <div class="title">
+                <h1>{{list.name}}</h1>
+            </div>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
-        <i class="fa-solid fa-ellipsis-vertical"></i>
     </header>
 
     <div class="list">
-        {{!-- {{#each list.rows.ingredient }} --}}
         <div class="ingredients-by-category">
-            <h4>{{list.rows.ingredient.category}}</h4>
             {{#each list.rows}}
-                <div class="list-row">
-                    <p contentEditable="false">{{amount}}</p>
-                    <p contentEditable="false">{{unit}}</p>
-                    <p contentEditable="false">{{ingredient.name}}</p>
-                </div>
+                {{#unless checked}}
+                    <div
+                        class="list-row"
+                        data-id="{{id}}"
+                        data-checked={{checked}}
+                    >
+                        <p class="row-amount">{{#if
+                                amount
+                            }}{{amount}}{{/if}}</p>
+                        <p
+                            class="row-unit"
+                            data-id="{{unit.id}}"
+                        >{{unit.name}}</p>
+                        <p
+                            class="row-ingredient"
+                            data-id="{{ingredient.id}}"
+                        >{{ingredient.name}}</p>
+                    </div>
+                {{/unless}}
             {{/each}}
         </div>
-        {{!-- {{/each}} --}}
 
+        <div class="checked-items">
+            {{#each list.rows}}
+                {{#if checked}}
+                    <div
+                        class="list-row"
+                        data-id="{{id}}"
+                        data-checked={{checked}}
+                    >
+                        <p class="row-amount">{{#if
+                                amount
+                            }}{{amount}}{{/if}}</p>
+                        <p
+                            class="row-unit"
+                            data-id="{{unit.id}}"
+                        >{{unit.name}}</p>
+                        <p
+                            class="row-ingredient"
+                            data-id="{{ingredient.id}}"
+                        >{{ingredient.name}}</p>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
     </div>
 
 </section>

@@ -1,5 +1,5 @@
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
-const listId = document.querySelector(".list").dataset.id;
+const list = document.querySelector(".list");
 const title = document.querySelector("h1");
 
 const editableElements = document.querySelectorAll("[contenteditable=true]");
@@ -16,6 +16,7 @@ saveButton.addEventListener("click", function (event) {
     const redirect = event.currentTarget.href;
     const listInfo = {
         name: title.innerText,
+        template: list.dataset.template === "true",
         //favorite: favorite.classList.contains("fa-solid"),
         rows: [],
     };

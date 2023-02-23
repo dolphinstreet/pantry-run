@@ -18,8 +18,7 @@
             <i class="fa-solid fa-plus"></i>
         </div>
     </header>
-
-    <div class="list" data-id="{{list._id}}">
+    <div class="list" data-id="{{list._id}}" data-template={{list.template}}>
         <div class="ingredients-by-category">
             {{#each list.rows}}
                 <div class="list-row">

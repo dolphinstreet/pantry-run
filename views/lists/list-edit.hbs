@@ -18,21 +18,35 @@
             <i class="fa-solid fa-plus"></i>
         </div>
     </header>
-    <div class="list" data-id="{{list._id}}" data-template={{list.template}}>
+    <div
+        class="wrapper list"
+        data-id="{{list._id}}"
+        data-template={{list.template}}
+    >
         <div class="ingredients-by-category">
             {{#each list.rows}}
-                <div class="list-row">
-                    <p class="item-amount" contenteditable="true">{{#if
-                            amount
-                        }}{{amount}}{{/if}}</p>
-                    <p
-                        class="item-unit"
-                        contenteditable="true"
-                    >{{unit.name}}</p>
-                    <p
-                        class="item-name"
-                        contenteditable="true"
-                    >{{ingredient.name}}</p>
+                <div class="swipe-container">
+                    <div class="swipe-item list-row">
+                        <span>
+                            <p class="item-amount" contenteditable="true">{{#if
+                                    amount
+                                }}{{amount}}{{/if}}</p>
+                            <p
+                                class="item-unit"
+                                contenteditable="true"
+                            >{{unit.name}}</p>
+                            <p
+                                class="item-name"
+                                contenteditable="true"
+                            >{{ingredient.name}}</p>
+                        </span>
+                        <button type="button">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                    <div class="reveal-right">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </div>
                 </div>
             {{/each}}
         </div>
@@ -41,9 +55,19 @@
 </section>
 
 <template id="template">
-    <div class="list-row">
-        <p class="item-amount" contenteditable="true"></p>
-        <p class="item-unit" contenteditable="true"></p>
-        <p class="item-name" contenteditable="true"></p>
+    <div class="swipe-container">
+        <div class="swipe-item list-row">
+            <span>
+                <p class="item-amount" contenteditable="true"></p>
+                <p class="item-unit" contenteditable="true"></p>
+                <p class="item-name" contenteditable="true"></p>
+            </span>
+            <button type="button">
+                <i class="fa-regular fa-trash-can"></i>
+            </button>
+        </div>
+        <div class="reveal-right">
+            <i class="fa-regular fa-trash-can"></i>
+        </div>
     </div>
 </template>

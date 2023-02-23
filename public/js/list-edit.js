@@ -1,3 +1,8 @@
+//import TinyGesture from "https://unpkg.com/tinygesture@1.1.4/TinyGesture.js";
+
+import initSlider from "./swipe.js";
+
+
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
 const list = document.querySelector(".list");
 const title = document.querySelector("h1");
@@ -8,6 +13,8 @@ const saveButton = document.querySelector(".icon.plus>a");
 const rowTemplate = document.getElementById("template");
 const addbutton = document.querySelector(".fa-plus");
 const searchBar = document.querySelector("input[name=search]");
+
+const deleteButton = document.querySelectorAll(".reveal-right")
 
 saveButton.addEventListener("click", function (event) {
     event.preventDefault();
@@ -53,6 +60,12 @@ saveButton.addEventListener("click", function (event) {
 addbutton.addEventListener("click", (event) => {
     const clone = rowTemplate.content.cloneNode(true);
     clone.querySelector(".item-name").textContent = searchBar.value;
+    initSlider(clone.querySelector(".swipe-item"));
     uncheckedDiv.prepend(clone);
     searchBar.value = "";
 });
+
+
+deleteButton.addEventListener("click", (event) => {
+
+})

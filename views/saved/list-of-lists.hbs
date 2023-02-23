@@ -5,12 +5,11 @@
         <a href="/lists/{{id}}">
             <div class="list-element">
                 <div class="list-title">
-                    {{#with favorite}}
-                        <i class="fa-solid fa-star"></i>
-                    {{/with}}
-                    {{#unless favorite}}
-                        <i class="fa-regular fa-star"></i>
-                    {{/unless}}
+                    {{#if favorite}}
+                        <i data-id="{{id}}" class="fa-solid fa-star"></i>
+                    {{else}}
+                        <i data-id="{{id}}" class="fa-regular fa-star"></i>
+                    {{/if}}
                     <h2>{{name}}</h2>
                 </div>
                 <i class="fa-regular fa-trash-can"></i>

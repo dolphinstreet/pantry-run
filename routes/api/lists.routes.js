@@ -21,6 +21,27 @@ router.delete("/:listId", (req, res, next) => {
     // Delete list
 });
 
+router.patch("/favorite/:listId", async (req, res, next) => {
+    try {
+        const previousFavorite = await List.findOneAndUpdate(
+            { favorite: true },
+            { favorite: false },
+            { new: true }
+        );
+        if (previousFavorite && previousFavorite.id === req.params.listId) {
+            return res.status(400).send("Bad request");
+        }
+        await List.findByIdAndUpdate(req.params.listId, { favorite: true });
+        if (previousFavorite) {
+            res.status(200).send({ "_id": previousFavorite?.id });
+        } else {
+            res.status(204).send();
+        }
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.patch("/empty/:listId", (req, res, next) => {
     // Empty list
 });

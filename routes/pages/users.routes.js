@@ -8,8 +8,8 @@ router.get("/", async (req, res, next) => {
     try {
         console.log(req.session.currentUser);
 
-        res.send(req.session.currentUser);
-        // res.render("user/profile");
+        //res.send(req.session.currentUser);
+        res.render("user/profile");
     } catch (error) {
         next(error);
     }

@@ -1,20 +1,27 @@
-<h1>Your lists</h1>
+<section class="list-of-lists">
+    <header class="list-header">
+        <h1>Your lists</h1>
+    </header>
 
-<div class="list-wrapper">
-    {{#each userLists}}
-        <a href="/lists/{{id}}">
-            <div class="list-element">
-                <div class="list-title">
-                    {{#with favorite}}
-                        <i class="fa-solid fa-star"></i>
-                    {{/with}}
-                    {{#unless favorite}}
-                        <i class="fa-regular fa-star"></i>
-                    {{/unless}}
-                    <h2>{{name}}</h2>
+    <div class="list-wrapper">
+
+        {{#each userLists}}
+            <a href="/lists/{{id}}">
+                <div class="list-element">
+                    <div class="one-title">
+                        {{#with favorite}}
+                            <i class="fa-solid fa-star"></i>
+                        {{/with}}
+                        {{#unless favorite}}
+                            <i class="fa-regular fa-star"></i>
+                        {{/unless}}
+                        <h2>{{name}}</h2>
+                    </div>
+                    <i class="fa-regular fa-trash-can"></i>
                 </div>
-                <i class="fa-regular fa-trash-can"></i>
-            </div>
-        </a>
-    {{/each}}
-</div>
+            </a>
+        {{/each}}
+
+    </div>
+
+</section>

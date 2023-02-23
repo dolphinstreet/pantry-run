@@ -47,8 +47,8 @@ async function checkItem(event) {
     row = event.currentTarget;
     checkedDiv.prepend(row);
     row.dataset.checked = true;
-    row.removeEventListener("touchstart", checkItem);
-    row.addEventListener("touchstart", uncheckItem);
+    row.removeEventListener("click", checkItem);
+    row.addEventListener("click", uncheckItem);
     axios
         .patch(`/api/lists/save`, getListInfo())
         .catch((error) => console.error(error));
@@ -58,12 +58,12 @@ async function uncheckItem(event) {
     row = event.currentTarget;
     uncheckedDiv.append(row);
     row.dataset.checked = false;
-    row.removeEventListener("touchstart", uncheckItem);
-    row.addEventListener("touchstart", checkItem);
+    row.removeEventListener("click", uncheckItem);
+    row.addEventListener("click", checkItem);
     axios
         .patch(`/api/lists/save`, getListInfo())
         .catch((error) => console.error(error));
 }
 
-uncheckList.forEach((row) => row.addEventListener("touchstart", checkItem));
-checkList.forEach((row) => row.addEventListener("touchstart", uncheckItem));
+uncheckList.forEach((row) => row.addEventListener("click", checkItem));
+checkList.forEach((row) => row.addEventListener("click", uncheckItem));

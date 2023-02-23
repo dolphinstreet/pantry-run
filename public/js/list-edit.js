@@ -53,4 +53,5 @@ addbutton.addEventListener("click", (event) => {
     const clone = rowTemplate.content.cloneNode(true);
     clone.querySelector(".item-name").textContent = searchBar.value;
     uncheckedDiv.prepend(clone);
+    searchBar.value = "";
 });

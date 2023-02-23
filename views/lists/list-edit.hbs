@@ -23,8 +23,9 @@
         <div class="ingredients-by-category">
             {{#each list.rows}}
                 <div class="list-row">
-                    {{! <div class="content"> }}
-                    <p class="item-amount" contenteditable="true">{{#if amount}}{{amount}}{{/if}}</p>
+                    <p class="item-amount" contenteditable="true">{{#if
+                            amount
+                        }}{{amount}}{{/if}}</p>
                     <p
                         class="item-unit"
                         contenteditable="true"
@@ -33,8 +34,6 @@
                         class="item-name"
                         contenteditable="true"
                     >{{ingredient.name}}</p>
-                    {{! </div> }}
-                    {{! <i class="fa-regular fa-pen-to-square"></i> }}
                 </div>
             {{/each}}
         </div>

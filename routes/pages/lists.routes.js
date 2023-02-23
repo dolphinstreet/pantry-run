@@ -86,7 +86,7 @@ router.get("/edit/:listId", isLoggedIn, async (req, res, next) => {
     try {
         res.locals.navbar.icon = "fa-solid fa-check";
         res.locals.navbar.link = `/lists/${req.params.listId}`;
-        res.locals.scripts = ["/js/edit.js"];
+        res.locals.scripts = ["/js/list-edit.js"];
 
         // #TODO aggregate with mongoose
         const list = await List.findById(req.params.listId)

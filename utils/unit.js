@@ -1,28 +1,26 @@
 const Unit = require("../models/Unit.model");
 
-async function createOrUpdateUnit(unit) {
+async function updateUnits(unit) {
     try {
-        if (unit._id && mongoose.Types.ObjectId.isValid(unit._id)) {
-            const updatedUnit = await Unit.findByIdAndUpdate(unit._id, {
-                unit,
-            });
-            if (updatedUnit) {
-                return updatedUnit;
-            }
+        if (!unit.name) {
+            return null;
         }
-        const existingUnit = await Unit.find({
+        const existingUnit = await Unit.findOne({
             name: { $regex: new RegExp(unit.name, "i") },
         });
         if (existingUnit) {
             return existingUnit;
         } else {
-            const newUnit = await Unit.create({ unit });
+            if ("_id" in unit) {
+                delete unit["_id"];
+            }
+            const newUnit = await Unit.create(unit);
             return newUnit;
         }
     } catch (error) {
-        console.error(error.message);
-        return null;
+        console.error("error during unit create", error.message);
+        throw error;
     }
 }
 
-module.exports = { createOrUpdateUnit };
+module.exports = { updateUnits };

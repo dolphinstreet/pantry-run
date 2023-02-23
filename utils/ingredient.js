@@ -1,34 +1,28 @@
 const Ingredient = require("../models/Ingredient.model");
 const mongoose = require("mongoose");
 
-async function createOrUpdateIngredient(ingredient) {
+async function updateIngredients(ingredient) {
     try {
-        if (ingredient._id) {
-            const updatedIngredient = await Ingredient.findByIdAndUpdate(
-                ingredient._id,
-                { ingredient }
-            );
-            if (updatedIngredient) {
-                return updatedIngredient;
-            }
-            delete ingredient._id;
+        if (!ingredient.name) {
+            return null;
         }
-        const existingIngredient = await Ingredient.find({
+        const existingIngredient = await Ingredient.findOne({
             name: { $regex: new RegExp(ingredient.name, "i") },
         });
         if (existingIngredient) {
-            existingIngredient.name = ingredient.name;
-            existingIngredient.category = ingredient.category;
-            await existingIngredient.save();
             return existingIngredient;
         } else {
-            const newIngredient = await Ingredient.create({ ingredient });
+            if ("_id" in ingredient) {
+                delete ingredient["_id"];
+            }
+            const newIngredient = await Ingredient.create(ingredient);
+            console.log("new ingredient", newIngredient);
             return newIngredient;
         }
     } catch (error) {
-        console.error(error.message);
-        return null;
+        console.error("error during unit create", error.message);
+        throw error;
     }
 }
 
-module.exports = { createOrUpdateIngredient };
+module.exports = { updateIngredients };

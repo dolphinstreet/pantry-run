@@ -61,11 +61,21 @@ addbutton.addEventListener("click", (event) => {
     const clone = rowTemplate.content.cloneNode(true);
     clone.querySelector(".item-name").textContent = searchBar.value;
     initSlider(clone.querySelector(".swipe-item"));
+
+    clone.querySelector(".reveal-right").addEventListener("click", deleteRow)
+
     uncheckedDiv.prepend(clone);
     searchBar.value = "";
 });
 
 
-deleteButton.addEventListener("click", (event) => {
 
-})
+deleteButton.forEach(el =>
+    el.addEventListener("click", deleteRow)
+)
+
+function deleteRow(event) {
+    const row = event.currentTarget.closest(".swipe-container")
+    const listId = list.dataset.id;
+    row.remove()
+}

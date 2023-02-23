@@ -67,3 +67,22 @@ addbutton.addEventListener("click", (event) => {
 
 
 
+deleteButton.forEach(el =>
+    el.addEventListener("click", (event) => {
+        const row = event.currentTarget.closest(".swipe-container")
+        const listId = list.dataset.id;
+        row.remove()
+
+
+
+        console.log(listId)
+
+        axios
+            .delete(`/lists/:listId`, listId)
+        // .then((res) => {
+        //     window.location.href = redirect;
+        // })
+        // .catch((error) => {
+        //     console.error(error);
+        // });
+    }))

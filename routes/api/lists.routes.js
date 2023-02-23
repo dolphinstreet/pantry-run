@@ -22,7 +22,6 @@ router.patch("/save", cleanListForUpdate, async (req, res, next) => {
         delete req.body._id;
 
         const updated = await List.findByIdAndUpdate(listId, req.body);
-        console.log(updated);
         res.status(200).json(updated);
     } catch (error) {
         next(error);

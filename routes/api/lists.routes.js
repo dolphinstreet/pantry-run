@@ -7,6 +7,16 @@ router.get("/", (req, res, next) => {
     // Return user's current lists
 });
 
+router.post("/", cleanListForUpdate, (req, res, next) => {
+    try {
+        req.body.user = req.session.currentUser.id;
+        const newList = List.create(req.body);
+        res.status(200).send(newList.id);
+    } catch (error) {
+        next(error);
+    }
+});
+
 router.delete("/:listId", (req, res, next) => {
     // Delete list
 });

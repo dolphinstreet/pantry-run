@@ -55,7 +55,7 @@ router.get("/:listId", async (req, res, next) => {
                 model: Ingredient,
                 populate: { path: "category", model: Category },
             });
-        res.render("/saved/list-details", { list });
+        res.render("saved/list-details", { list });
     } catch (error) {
         next(error);
     }

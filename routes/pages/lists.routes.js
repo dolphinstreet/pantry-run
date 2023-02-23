@@ -11,6 +11,7 @@ router.get("/", async (req, res, next) => {
     // display all lists
     try {
         res.locals.navbar.link = "/lists/create";
+        res.locals.scripts = ["/js/favorites.js"];
 
         const user = req.session.currentUser.id;
         const userLists = await List.find({
@@ -26,7 +27,7 @@ router.get("/create", (req, res, next) => {
     try {
         res.locals.navbar.link = `/lists`;
         res.locals.navbar.icon = "fa-solid fa-check";
-        res.locals.scripts = ["/js/list-create.js"];
+        res.locals.scripts = ["/js/list-create.js", "/js/favorites.js"];
         res.locals.list = {
             name: "New List",
             template: false,
@@ -43,7 +44,7 @@ router.get("/:listId", async (req, res, next) => {
     try {
         res.locals.navbar.icon = "fa-regular fa-pen-to-square";
         res.locals.navbar.link = `/lists/edit/${req.params.listId}`;
-        res.locals.scripts = ["/js/list-details.js"];
+        res.locals.scripts = ["/js/list-details.js", "/js/favorites.js"];
 
         // #TODO aggregate with mongoose
         const list = await List.findById(req.params.listId)
@@ -67,7 +68,7 @@ router.get("/edit/:listId", async (req, res, next) => {
     try {
         res.locals.navbar.icon = "fa-solid fa-check";
         res.locals.navbar.link = `/lists/${req.params.listId}`;
-        res.locals.scripts = ["/js/list-edit.js"];
+        res.locals.scripts = ["/js/list-edit.js", "/js/favorites.js"];
 
         // #TODO aggregate with mongoose
         const list = await List.findById(req.params.listId)
@@ -85,11 +86,6 @@ router.get("/edit/:listId", async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-});
-
-router.patch("/edit/:listId", (req, res, next) => {
-    // list edition form submission
-    res.send(req.body);
 });
 
 module.exports = router;

@@ -38,7 +38,6 @@ saveButton.addEventListener("click", function (event) {
             },
         });
     });
-    console.log(listInfo);
     axios
         .post(`/api/lists/`, listInfo)
         .then((res) => {

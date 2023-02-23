@@ -15,6 +15,7 @@
         </div>
         <div class="searchbar">
             <input type="text" name="search" placeholder="Search an item" />
+            <i class="fa-solid fa-plus"></i>
         </div>
     </header>
 
@@ -37,8 +38,14 @@
                 </div>
             {{/each}}
         </div>
-
-        <div class="checked-items"></div>
     </div>
 
 </section>
+
+<template id="template">
+    <div class="list-row">
+        <p class="item-amount" contenteditable="true">0</p>
+        <p class="item-unit" contenteditable="true">0</p>
+        <p class="item-name" contenteditable="true"></p>
+    </div>
+</template>

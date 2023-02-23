@@ -129,11 +129,13 @@ label {
 
 
 /*LIST DETAILS----------------------------------------------------*/
+
 .list-details{
   display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30vh;
 }
 .list-header{
   width: 100%;
@@ -160,13 +162,17 @@ label {
 .list-details h1{
   max-width: 70vmin;
 }
+.searchbar{
+  border-bottom: 2px solid var(--blue);
+  display: flex;
+}
+
 .searchbar input{
     all: unset;
     width: 80vmin;
-    border-bottom: 2px solid var(--blue);
     height: 3rem;
     padding-left: 0.4rem;
-  margin-top: 0.5rem;
+    margin-top: 0.5rem;
 }
 
 .list-row{
@@ -219,3 +225,4 @@ label {
   padding:0.7rem 1rem;
   max-width: 50%;
 }
+

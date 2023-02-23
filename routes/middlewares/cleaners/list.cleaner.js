@@ -2,11 +2,14 @@ const cleanUnit = require("./unit.cleaner");
 const cleanIngredient = require("./ingredient.cleaner");
 const { updateUnits } = require("../../../utils/unit");
 const { updateIngredients } = require("../../../utils/ingredient");
+const { default: mongoose } = require("mongoose");
 
 const cleanListForUpdate = async (req, res, next) => {
     try {
-        if (req.body._id) {
-            // clean id
+        if ("_id" in req.body) {
+            if (!mongoose.Types.ObjectId.isValid(req.body._id)) {
+                return res.status(400).send("invalid request");
+            }
         }
         if (req.body.name) {
             // clean name
@@ -50,11 +53,11 @@ const cleanListForUpdate = async (req, res, next) => {
             // alter favorite
         }
 
-        if (req.body.template !== undefined) {
+        if ("template" in req.body) {
             delete req.body.template;
         }
 
-        if (req.body.user) {
+        if ("user" in req.body) {
             delete req.body.user;
         }
         next();

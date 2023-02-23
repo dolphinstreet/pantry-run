@@ -1,3 +1,8 @@
+//import TinyGesture from "https://unpkg.com/tinygesture@1.1.4/TinyGesture.js";
+
+import initSlider from "./swipe.js";
+
+
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
 const list = document.querySelector(".list");
 const title = document.querySelector("h1");
@@ -55,4 +60,7 @@ addbutton.addEventListener("click", (event) => {
     clone.querySelector(".item-name").textContent = searchBar.value;
     uncheckedDiv.prepend(clone);
     searchBar.value = "";
+    //console.log(clone)
+    initSlider(clone);
 });
+

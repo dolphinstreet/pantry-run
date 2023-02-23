@@ -68,7 +68,8 @@ router.get("/edit/:listId", async (req, res, next) => {
     try {
         res.locals.navbar.icon = "fa-solid fa-check";
         res.locals.navbar.link = `/lists/${req.params.listId}`;
-        res.locals.scripts = ["/js/list-edit.js", "/js/favorites.js"];
+        res.locals.scripts = ["/js/favorites.js"];
+        res.locals.module = ["/js/swipe.js", "/js/list-edit.js"];
 
         // #TODO aggregate with mongoose
         const list = await List.findById(req.params.listId)

@@ -11,7 +11,9 @@
       <link rel="stylesheet" href="/stylesheets/style.css" />
       <link rel="stylesheet" href="/stylesheets/nav.css" />
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+      {{#each module}}
+         <script type="module" src="{{this}}"></script>
+      {{/each}}
       {{#each css}}
          <link rel="stylesheet" href="{{this}}" />
       {{/each}}

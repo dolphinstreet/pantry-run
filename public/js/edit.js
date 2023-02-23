@@ -1,12 +1,14 @@
 const listRow = document.querySelectorAll(".list-row");
-const checkedDiv = document.querySelector(".checked-items");
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
 const listId = document.querySelector(".list").dataset.id;
 const title = document.querySelector("h1");
 
-
 const editableElements = document.querySelectorAll("[contenteditable=true]")
 const saveButton = document.querySelector(".icon.plus>a")
+
+const rowTemplate = document.getElementById('template')
+const addbutton = document.querySelector(".fa-plus")
+const searchBar = document.querySelector("input[name=search]")
 
 saveButton.addEventListener("click", async function (event) {
     event.preventDefault();
@@ -54,28 +56,11 @@ saveButton.addEventListener("click", async function (event) {
 
 })
 
-// const editRowIcon = uncheckedDiv.querySelectorAll(".fa-pen-to-square")
-// const editableItems = uncheckedDiv.querySelectorAll("p")
+addbutton.addEventListener("click", (event) => {
+    const clone = rowTemplate.content.cloneNode(true)
+    clone.querySelector('.item-name').textContent = searchBar.value;
+    uncheckedDiv.prepend(clone)
+})
 
 
-// // Make content editable on click
-// editRowIcon.forEach((icon) => icon.addEventListener("click", makeEditable));
 
-// function makeEditable(event) {
-//     row = event.target.parentNode
-//     icon = event.target
-//     const amountDom = row.querySelector(".item-amount");
-//     const unitDom = row.querySelector(".item-unit");
-//     const ingredientDom = row.querySelector(".item-name");
-
-//     amountDom.setAttribute("contenteditable", "true");
-//     unitDom.setAttribute("contenteditable", "true");
-//     ingredientDom.setAttribute("contenteditable", "true");
-
-//     icon.style.color = "#ffa668"
-
-//     amountDom.focus()
-//     unitDom.focus()
-//     ingredientDom.focus()
-
-// }

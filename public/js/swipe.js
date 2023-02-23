@@ -62,4 +62,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-export default initSlider
+export default initSlider;

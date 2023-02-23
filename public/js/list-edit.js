@@ -14,6 +14,8 @@ const rowTemplate = document.getElementById("template");
 const addbutton = document.querySelector(".fa-plus");
 const searchBar = document.querySelector("input[name=search]");
 
+const deleteButton = document.querySelectorAll(".reveal-right")
+
 saveButton.addEventListener("click", function (event) {
     event.preventDefault();
 
@@ -58,9 +60,12 @@ saveButton.addEventListener("click", function (event) {
 addbutton.addEventListener("click", (event) => {
     const clone = rowTemplate.content.cloneNode(true);
     clone.querySelector(".item-name").textContent = searchBar.value;
+    initSlider(clone.querySelector(".swipe-item"));
     uncheckedDiv.prepend(clone);
     searchBar.value = "";
-    //console.log(clone)
-    initSlider(clone);
 });
 
+
+deleteButton.addEventListener("click", (event) => {
+
+})

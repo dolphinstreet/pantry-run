@@ -1,4 +1,16 @@
 axios.defaults.withCredentials = true;
+const listOfList = document.querySelector(".list-of-lists .list-wrapper");
+
+function favoriteOnTop() {
+    if (listOfList) {
+        const favoriteList = document
+            .querySelector(".fa-solid")
+            .closest(".list-element");
+        if (favoriteList) {
+            listOfList.prepend(favoriteList);
+        }
+    }
+}
 
 function switchFavorite(event) {
     event.stopPropagation();
@@ -16,9 +28,12 @@ function switchFavorite(event) {
                 previousFavorite.classList.remove("fa-solid");
                 previousFavorite.classList.add("fa-regular");
             }
+            favoriteOnTop();
         })
         .catch((error) => console.error(error.message));
 }
+
+favoriteOnTop();
 
 document.querySelectorAll(".fa-star.fa-regular").forEach((element) => {
     element.addEventListener("click", switchFavorite);

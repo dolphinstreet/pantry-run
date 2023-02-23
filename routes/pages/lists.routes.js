@@ -17,7 +17,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
         const userLists = await List.find({
             $and: [{ template: { $ne: true } }, { user: user }],
         });
-        console.log("lists : >>>>>>>>>>>>>>>>>>>>>>>>>", userLists)
+        // // console.log("lists : >>>>>>>>>>>>>>>>>>>>>>>>>", userLists)
         res.render("lists/list-of-lists", { userLists });
     } catch (error) {
         next(error);
@@ -29,7 +29,7 @@ router.get("/:listId", isLoggedIn, async (req, res, next) => {
     try {
         res.locals.navbar.icon = "fa-regular fa-pen-to-square";
         res.locals.navbar.link = `/lists/edit/${req.params.listId}`;
-        res.locals.scripts = ["/js/list-details.js"]
+        res.locals.scripts = ["/js/list-details.js"];
 
         // #TODO aggregate with mongoose
         const list = await List.findById(req.params.listId)
@@ -42,7 +42,7 @@ router.get("/:listId", isLoggedIn, async (req, res, next) => {
                 model: Ingredient,
                 populate: { path: "category", model: Category },
             });
-        console.log("lists : >>>>>>>>>>>>>>>>>>>>>>>>>", list)
+        // // console.log("lists : >>>>>>>>>>>>>>>>>>>>>>>>>", list);
         // aggregate for category listing
         // const data = await List.findById(req.params.listId).aggregate([
         //     { $unwind: "$rows" },
@@ -78,7 +78,6 @@ router.get("/:listId", isLoggedIn, async (req, res, next) => {
         //     model: Unit,
         // });
 
-        // data.rows = aggregate(data.rows, ["ingredient", "category"]);
         res.render("lists/list-details", { list });
     } catch (error) {
         next(error);
@@ -89,7 +88,7 @@ router.get("/edit/:listId", isLoggedIn, async (req, res, next) => {
     try {
         res.locals.navbar.icon = "fa-solid fa-check";
         res.locals.navbar.link = `/lists/${req.params.listId}`;
-        res.locals.scripts = ["/js/edit.js"]
+        res.locals.scripts = ["/js/edit.js"];
 
         // #TODO aggregate with mongoose
         const list = await List.findById(req.params.listId)
@@ -109,9 +108,17 @@ router.get("/edit/:listId", isLoggedIn, async (req, res, next) => {
     }
 });
 
-router.post("/edit/:listId", isLoggedIn, (req, res, next) => {
+router.patch("/edit/:listId", isLoggedIn, (req, res, next) => {
     // list edition form submission
     res.send(req.body);
+});
+
+router.post("/", isLoggedIn, (req, res, next) => {
+    try {
+        //create new list
+    } catch (error) {
+        next(error);
+    }
 });
 
 module.exports = router;

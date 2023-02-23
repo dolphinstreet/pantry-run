@@ -4,6 +4,7 @@ const checkedDiv = document.querySelector(".checked-items");
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
 const listId = document.querySelector(".list-details").dataset.id;
 const title = document.querySelector("h1");
+const favorite = document.querySelector(".fa-star");
 
 function getRowsData() {
     const rows = [];
@@ -34,28 +35,34 @@ function getListInfo() {
     return {
         "_id": listId,
         name: title.innerText,
+        favorite: favorite.classList.contains("fa-solid"),
         rows: getRowsData(),
     };
 }
 
-function checkItem(event) {
+async function checkItem(event) {
     row = event.currentTarget;
-    checkedDiv.append(row);
+    checkedDiv.prepend(row);
     row.dataset.checked = true;
     row.removeEventListener("touchstart", checkItem);
     row.addEventListener("touchstart", uncheckItem);
-    console.log(getRowsData());
-    // axios.patch(`/api/lists/save/${listId}`, {
-    //     rows:
-    // });
+    console.log(getListInfo());
+    axios
+        .patch(`/api/lists/save`, getListInfo())
+        .then((res) => console.log(res.data))
+        .catch((error) => console.error(error));
 }
 
-function uncheckItem(event) {
+async function uncheckItem(event) {
     row = event.currentTarget;
     uncheckedDiv.append(row);
     row.dataset.checked = false;
     row.removeEventListener("touchstart", uncheckItem);
     row.addEventListener("touchstart", checkItem);
+    axios
+        .patch(`/api/lists/save`, getListInfo())
+        .then((res) => console.log(res.data))
+        .catch((error) => console.error(error));
 }
 
 listRow.forEach((row) => row.addEventListener("touchstart", checkItem));

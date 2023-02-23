@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const List = require("../../models/List.model");
+const { cleanListForUpdate } = require("../middlewares/cleaners/list.cleaner");
 
 router.get("/", (req, res, next) => {
     // Return user's current lists
@@ -13,10 +15,19 @@ router.patch("/empty/:listId", (req, res, next) => {
     // Empty list
 });
 
-router.patch("/save", (req, res, next) => {
+router.patch("/save", cleanListForUpdate, async (req, res, next) => {
     // Save list with edit form infos in body
-    console.log(req.session.currentUser);
-    res.send(req.session.currentUser);
+    try {
+        const listId = req.body._id;
+        delete req.body._id;
+
+        // const updated = await List.findByIdAndUpdate(listId, req.body);
+        console.log(req.session.currentUser);
+        // console.log(updated);
+        res.status(200).json(req.body);
+    } catch (error) {
+        next(error);
+    }
 });
 
 router.post("/save/:listId", (req, res, next) => {
@@ -24,7 +35,7 @@ router.post("/save/:listId", (req, res, next) => {
 });
 
 router.patch("/:listId", (req, res, next) => {
-    // Edit list on field focus out
+    //
 });
 
 router.patch("/import/:destinationId", (req, res, next) => {

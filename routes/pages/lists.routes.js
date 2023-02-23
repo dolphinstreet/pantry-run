@@ -9,7 +9,7 @@ const { isLoggedIn } = require("../middlewares/auth");
 
 // Route prefix : /lists
 
-router.get("/", isLoggedIn, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
     try {
         // display all lists
         res.locals.navbar.link = "/lists/create";
@@ -27,21 +27,8 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 router.get("/create", (req, res, next) => {
     try {
         res.locals.navbar.link = `/lists`;
-        res.locals.scripts = ["/js/list-edit.js"];
-        res.locals.list = {
-            name: "New List",
-        };
-
-        res.render("lists/list-edit");
-    } catch (error) {
-        next(error);
-    }
-});
-
-router.post("/create", (req, res, next) => {
-    try {
-        res.locals.navbar.link = `/lists`;
-        res.locals.scripts = ["/js/list-edit.js"];
+        res.locals.navbar.icon = "fa-solid fa-check";
+        res.locals.scripts = ["/js/list-create.js"];
         res.locals.list = {
             name: "New List",
         };
@@ -104,14 +91,6 @@ router.get("/edit/:listId", async (req, res, next) => {
 router.patch("/edit/:listId", (req, res, next) => {
     // list edition form submission
     res.send(req.body);
-});
-
-router.post("/", (req, res, next) => {
-    try {
-        //create new list
-    } catch (error) {
-        next(error);
-    }
 });
 
 module.exports = router;

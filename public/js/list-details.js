@@ -40,7 +40,7 @@ function getListInfo() {
 
 function checkItem(event) {
     row = event.currentTarget;
-    checkedDiv.append(row);
+    checkedDiv.prepend(row);
     row.dataset.checked = true;
     row.removeEventListener("touchstart", checkItem);
     row.addEventListener("touchstart", uncheckItem);

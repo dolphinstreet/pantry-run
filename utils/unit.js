@@ -6,7 +6,7 @@ async function updateUnits(unit) {
             return null;
         }
         const existingUnit = await Unit.findOne({
-            name: { $regex: new RegExp(unit.name, "i") },
+            name: { $regex: new RegExp(`^${unit.name}$`, "i") },
         });
         if (existingUnit) {
             return existingUnit;

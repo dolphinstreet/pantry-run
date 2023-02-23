@@ -7,8 +7,19 @@
 }
 body {
   font: 14px "Poppins";
+  font-weight: 300;
   background-color: var(--lightBlue);
   overflow-x: hidden;
+}
+h3 {
+  font-weight: 400;
+}
+h1 {
+  font-weight: 800;
+}
+
+h2 {
+  font-weight: 600;
 }
 
 a {
@@ -68,13 +79,17 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 #signup img, #login img{
-  width: 20vmin;
+  width: 25vmin;
   margin-bottom: 2rem;
 }
 
+#login form, #signup form {
+  width: 75vmin;
+} 
 .input-container{
   display: flex;
   flex-direction: column;
@@ -85,7 +100,7 @@ a {
   all: unset;
   border-bottom: 1px solid var(--blue);
   height: 2rem;
-  width: 14rem;
+  width: 100%;
 } 
 
 ::placeholder {
@@ -165,6 +180,7 @@ label {
 .searchbar{
   border-bottom: 2px solid var(--blue);
   display: flex;
+  justify-content: space-between;
 }
 
 .searchbar input{
@@ -226,3 +242,98 @@ label {
   max-width: 50%;
 }
 
+/*PROFILE----------------------------------------------------*/
+
+
+.picture-container{
+  width: 6rem;
+  height: 6rem;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+#profile-pic{
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width:100%;
+  object-fit: cover;
+}
+
+.profile{
+  height: 110vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8vmin;
+  padding: 2rem;
+}
+
+ .fa-ellipsis-vertical, .fa-arrow-right-from-bracket {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+}
+
+hr{
+  border: 1px solid var(--blue);
+  width: 80vmin;
+  align-self: center;
+}
+
+.user-info{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 4rem 4rem 0 4rem;
+}
+
+.info{
+  display: flex;
+  align-items: baseline;
+  gap:0.5rem;
+}
+.info i{
+  font-size: 1rem;
+}
+
+/*EDIT*/
+.profile-edit p{
+  border: 2px solid #75a1ff5e;
+  border-radius: 7px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+  
+}
+.profile-edit input {
+  all: unset;
+  padding:0.7rem;
+  border: 2px solid var(--blue);
+  border-radius:10px;
+  height: 1rem;
+  width: calc(100% - 1.4rem);
+  margin: 0.5rem 0 1rem 0;
+}
+
+.profile-edit form{
+  width: 100%;
+}
+
+.profile-edit .user-info{
+  margin: 1rem 4rem 0 4rem;
+}
+
+
+/*XXX----------------------------------------------------*/
+
+
+/*XXX----------------------------------------------------*/
+
+
+/*XXX----------------------------------------------------*/

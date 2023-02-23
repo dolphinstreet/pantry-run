@@ -1,3 +1,30 @@
 <section class="profile">
-    <h1>Hey</h1>
+    <a href="/logout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </a>
+    <header>
+        <div class="picture-container">
+            <img src="{{user.photo}}" id="profile-pic" alt="profile picture" />
+        </div>
+        <h1>Hey<br />{{user.username}} !</h1>
+    </header>
+    <hr />
+    <div class="user-info">
+        <h2>Your infos</h2>
+        <div class="info">
+            <i class="fa-solid fa-user"></i>
+            <div class="info-text">
+                <h3>Username</h3>
+                <p>{{user.username}}</p>
+            </div>
+        </div>
+        <div class="info">
+            <i class="fa-solid fa-lock"></i>
+            <div class="info-text">
+                <h3>Password</h3>
+                <p>***************</p>
+            </div>
+        </div>
+    </div>
+
 </section>

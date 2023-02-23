@@ -6,10 +6,10 @@ const users = [
         username: "dummy",
         email: "dummy@site.com",
         password: "dummy",
-        photo: "images/dummy-user.jpeg",
+        photo: "images/dummy-user.jpeg"
     },
 ];
-
+console.log(users)
 const seedUsers = async () => {
     try {
         if ((await User.count()) > 0) {

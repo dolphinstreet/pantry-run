@@ -63,8 +63,7 @@ addbutton.addEventListener("click", (event) => {
     initSlider(clone.querySelector(".swipe-item"));
     uncheckedDiv.prepend(clone);
     searchBar.value = "";
-    //console.log(clone)
-    initSlider(clone);
 });
+
 
 

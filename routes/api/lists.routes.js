@@ -17,8 +17,30 @@ router.post("/", cleanList, (req, res, next) => {
     }
 });
 
-router.delete("/:listId", (req, res, next) => {
-    // Delete list
+router.delete("/:listId", async (req, res, next) => {
+    try {
+        if (mongoose.Types.ObjectId.isValid(req.params.listId)) {
+            const deletedList = await List.findByIdAndDelete(req.params.listId);
+            if (deletedList.favorite) {
+                const nextFavorite = await List.findOneAndUpdate(
+                    {
+                        template: false,
+                    },
+                    { favorite: true },
+                    { new: true }
+                );
+            }
+            if (!nextFavorite) {
+                const newFavorite = await List.create({
+                    name: "New List",
+                    template: false,
+                    favorite: true,
+                });
+            }
+        }
+    } catch (error) {
+        next(error);
+    }
 });
 
 router.patch("/favorite/:listId", async (req, res, next) => {

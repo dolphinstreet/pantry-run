@@ -16,7 +16,7 @@
     <div class="list">
         <div class="ingredients-by-category">
             {{#each list.rows}}
-                <div class="list-row" data-id="{{id}}" data-checked="{{checked}}">
+                <div class="list-row" data-id="{{id}}" data-checked={{checked}}>
                     <p class="row-amount">{{amount}}</p>
                     <p class="row-unit" data-id="{{unit.id}}">{{unit.name}}</p>
                     <p class="row-ingredient" data-id="{{ingredient.id}}">{{ingredient.name}}</p>

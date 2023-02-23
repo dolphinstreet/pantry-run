@@ -21,6 +21,9 @@ router.delete("/:listId", async (req, res, next) => {
     try {
         if (mongoose.Types.ObjectId.isValid(req.params.listId)) {
             const deletedList = await List.findByIdAndDelete(req.params.listId);
+            if (!deletedList) {
+                return res.status(400).send("Bad request");
+            }
             if (deletedList.favorite) {
                 const nextFavorite = await List.findOneAndUpdate(
                     {
@@ -37,6 +40,7 @@ router.delete("/:listId", async (req, res, next) => {
                     favorite: true,
                 });
             }
+            res.sendStatus(204);
         }
     } catch (error) {
         next(error);

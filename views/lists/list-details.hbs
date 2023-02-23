@@ -16,15 +16,27 @@
     <div class="list">
         <div class="ingredients-by-category">
             {{#each list.rows}}
+            {{#unless checked}}
                 <div class="list-row" data-id="{{id}}" data-checked={{checked}}>
-                    <p class="row-amount">{{amount}}</p>
+                    <p class="row-amount">{{#if amount}}{{amount}}{{/if}}</p>
                     <p class="row-unit" data-id="{{unit.id}}">{{unit.name}}</p>
                     <p class="row-ingredient" data-id="{{ingredient.id}}">{{ingredient.name}}</p>
                 </div>
+            {{/unless}}
             {{/each}}
         </div>
 
-        <div class="checked-items"></div>
+        <div class="checked-items">
+            {{#each list.rows}}
+                {{#if checked}}
+                    <div class="list-row" data-id="{{id}}" data-checked={{checked}}>
+                        <p class="row-amount">{{#if amount}}{{amount}}{{/if}}</p>
+                        <p class="row-unit" data-id="{{unit.id}}">{{unit.name}}</p>
+                        <p class="row-ingredient" data-id="{{ingredient.id}}">{{ingredient.name}}</p>
+                    </div>
+                {{/if}}
+            {{/each}}
+        </div>
     </div>
 
 </section>

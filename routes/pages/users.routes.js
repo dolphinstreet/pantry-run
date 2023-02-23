@@ -6,8 +6,6 @@ const Tag = require("../../models/Tag.model");
 router.get("/", async (req, res, next) => {
     // profile consultation page
     try {
-        console.log(req.session.currentUser);
-
         //res.send(req.session.currentUser);
         res.render("user/profile");
     } catch (error) {

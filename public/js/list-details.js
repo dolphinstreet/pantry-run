@@ -1,5 +1,8 @@
 const listDetails = document.querySelector(".list-details");
-const listRow = document.querySelectorAll(".list-row");
+const checkList = document.querySelectorAll(".checked-items .list-row");
+const uncheckList = document.querySelectorAll(
+    ".ingredients-by-category .list-row"
+);
 const checkedDiv = document.querySelector(".checked-items");
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
 const listId = document.querySelector(".list-details").dataset.id;
@@ -46,10 +49,8 @@ async function checkItem(event) {
     row.dataset.checked = true;
     row.removeEventListener("touchstart", checkItem);
     row.addEventListener("touchstart", uncheckItem);
-    console.log(getListInfo());
     axios
         .patch(`/api/lists/save`, getListInfo())
-        .then((res) => console.log(res.data))
         .catch((error) => console.error(error));
 }
 
@@ -61,8 +62,8 @@ async function uncheckItem(event) {
     row.addEventListener("touchstart", checkItem);
     axios
         .patch(`/api/lists/save`, getListInfo())
-        .then((res) => console.log(res.data))
         .catch((error) => console.error(error));
 }
 
-listRow.forEach((row) => row.addEventListener("touchstart", checkItem));
+uncheckList.forEach((row) => row.addEventListener("touchstart", checkItem));
+checkList.forEach((row) => row.addEventListener("touchstart", uncheckItem));

@@ -1,4 +1,9 @@
-const cleanListForUpdate = (req, res, next) => {
+const cleanUnit = require("./unit.cleaner");
+const cleanIngredient = require("./ingredient.cleaner");
+const createOrUpdateUnit = require("../../../utils/unit");
+const createOrUpdateIngredient = require("../../../utils/unit");
+
+const cleanListForUpdate = async (req, res, next) => {
     if (req.body._id) {
         // clean id
     }
@@ -7,9 +12,24 @@ const cleanListForUpdate = (req, res, next) => {
     }
 
     if (req.body.rows) {
-        req.body.rows.forEach((row) => {
-            console.log("cleaner row", row);
-        });
+        for (row of rew.body.rows) {
+            try {
+                row.unit = cleanUnit(row.unit);
+                if (row.unit) {
+                    row.unit = await createOrUpdateUnit(unit);
+                }
+                if (!row.unit) {
+                    delete row.unit;
+                }
+                row.unit = cleanIngredient(row.ingredient);
+                if (row.ingredient) {
+                    row.ingredient = await createOrUpdateIngredient(unit);
+                }
+                if (!row.ingedient) {
+                    delete row.ingredient;
+                }
+            } catch (error) {}
+        }
     }
 
     if (req.body.favorite !== undefined) {

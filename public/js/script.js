@@ -25,14 +25,14 @@ function openMenu(event) {
     event.currentTarget.addEventListener("click", closeMenu);
 }
 
-// document
-//     .querySelector(".fa-ellipsis-vertical")
-//     .addEventListener("click", (event) => {
-//         const id = document.querySelector(".list-details.details").dataset.id;
-//         axios
-//             .post("/api/lists/save/" + id)
-//             .then((res) => {
-//                 console.log(res);
-//             })
-//             .catch((e) => console.error(e));
-//     });
+document.querySelector(".save-list-btn").addEventListener("click", (event) => {
+    event.preventDefault();
+    const id = document.querySelector(".list-details.details").dataset.id;
+    axios
+        .post("/api/lists/save/" + id)
+        .then((res) => {
+            settingsButton.click();
+            console.log(res);
+        })
+        .catch((e) => console.error(e));
+});

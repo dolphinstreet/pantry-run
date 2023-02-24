@@ -24,7 +24,7 @@ router.get("/", getUserLists, async (req, res, next) => {
     }
 });
 
-router.get("/create", getUserLists, (req, res, next) => {
+router.get("/create", (req, res, next) => {
     try {
         res.locals.navbar.link = `/saved`;
         res.locals.navbar.icon = "fa-solid fa-check";
@@ -65,7 +65,7 @@ router.get("/:listId", getUserLists, async (req, res, next) => {
     }
 });
 
-router.get("/edit/:listId", getUserLists, async (req, res, next) => {
+router.get("/edit/:listId", async (req, res, next) => {
     // display saved list form
     try {
         res.locals.navbar.icon = "fa-solid fa-check";

@@ -12,6 +12,12 @@
             </div>
             <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
+        <select id="list-selection">
+            {{#each userLists}}
+                <option value="{{_id}}" {{#if favorite}}class="favorite" selected{{/if}}>{{name}}</option>
+            {{/each}}
+        </select>
+
     </header>
 
     <div class="list">

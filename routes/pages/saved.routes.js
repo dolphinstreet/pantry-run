@@ -4,10 +4,11 @@ const List = require("../../models/List.model");
 const Ingredient = require("../../models/Ingredient.model");
 const Category = require("../../models/Category.model");
 const Unit = require("../../models/Unit.model");
+const { getUserLists } = require("../middlewares/list");
 
 // Route prefix: /saved
 
-router.get("/", async (req, res, next) => {
+router.get("/", getUserLists, async (req, res, next) => {
     // display all saved lists
     try {
         res.locals.navbar.link = "/saved/create";
@@ -23,7 +24,7 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-router.get("/create", (req, res, next) => {
+router.get("/create", getUserLists, (req, res, next) => {
     try {
         res.locals.navbar.link = `/saved`;
         res.locals.navbar.icon = "fa-solid fa-check";
@@ -40,11 +41,11 @@ router.get("/create", (req, res, next) => {
     }
 });
 
-router.get("/:listId", async (req, res, next) => {
+router.get("/:listId", getUserLists, async (req, res, next) => {
     // display saved list details
     try {
         res.locals.navbar.icon = "fa-regular fa-pen-to-square";
-        res.locals.navbar.link = `/lists/edit/${req.params.listId}`;
+        res.locals.navbar.link = `/saved/edit/${req.params.listId}`;
         res.locals.scripts = ["/js/list-delete.js"];
 
         // #TODO aggregate with mongoose
@@ -64,12 +65,16 @@ router.get("/:listId", async (req, res, next) => {
     }
 });
 
-router.get("/edit/:listId", async (req, res, next) => {
+router.get("/edit/:listId", getUserLists, async (req, res, next) => {
     // display saved list form
     try {
         res.locals.navbar.icon = "fa-solid fa-check";
         res.locals.navbar.link = `/saved/${req.params.listId}`;
-        res.locals.scripts = ["/js/list-delete.js"];
+        res.locals.module = [
+            "/js/swipe.js",
+            "/js/list-edit.js",
+            "/js/list-delete.js",
+        ];
 
         // #TODO aggregate with mongoose
         const list = await List.findById(req.params.listId)
@@ -83,7 +88,7 @@ router.get("/edit/:listId", async (req, res, next) => {
                 populate: { path: "category", model: Category },
             });
 
-        res.render("list/list-edit", { list });
+        res.render("lists/list-edit", { list });
     } catch (error) {
         next(error);
     }

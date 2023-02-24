@@ -4,10 +4,6 @@ const mongoose = require("mongoose");
 const List = require("../../models/List.model");
 const { cleanList } = require("../middlewares/cleaners/list.cleaner");
 
-router.get("/", (req, res, next) => {
-    // Return user's current lists
-});
-
 router.post("/", cleanList, async (req, res, next) => {
     try {
         req.body.user = req.session.currentUser.id;

@@ -1,4 +1,3 @@
-//import TinyGesture from "https://unpkg.com/tinygesture@1.1.4/TinyGesture.js";
 
 import initSlider from "./swipe.js";
 

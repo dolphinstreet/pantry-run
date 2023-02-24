@@ -6,7 +6,7 @@ const users = [
         username: "dummy",
         email: "dummy@site.com",
         password: "dummy",
-        photo: "images/dummy-user.jpeg"
+        photo: "/images/dummy-user.jpeg"
     },
 ];
 const seedUsers = async () => {

@@ -6,20 +6,20 @@
     <div class="list-wrapper">
 
         {{#each userLists}}
-                <div class="list-element">
-                    <div class="one-title">
+            <div class="list-element">
+                <div class="one-title">
                     {{#if favorite}}
                         <i data-id="{{id}}" class="fa-solid fa-star"></i>
                     {{else}}
                         <i data-id="{{id}}" class="fa-regular fa-star"></i>
                     {{/if}}
 
-                        <a href="/lists/{{id}}">
-                            <h2>{{name}}</h2>
-                        </a>
-                    </div>
-                    <i class="fa-regular fa-trash-can"></i>
+                    <a href="/lists/{{id}}">
+                        <h2>{{name}}</h2>
+                    </a>
                 </div>
+                <i class="fa-regular fa-trash-can"></i>
+            </div>
         {{/each}}
 
     </div>

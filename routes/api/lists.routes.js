@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const mongoose = require("mongoose");
 const List = require("../../models/List.model");
 const { cleanList } = require("../middlewares/cleaners/list.cleaner");
 
@@ -29,28 +30,24 @@ router.post("/", cleanList, async (req, res, next) => {
 
 router.delete("/:listId", async (req, res, next) => {
     try {
-        if (mongoose.Types.ObjectId.isValid(req.params.listId)) {
-            const deletedList = await List.findByIdAndDelete(req.params.listId);
-            if (!deletedList) {
-                return res.status(400).send("Bad request");
-            }
-            if (deletedList.favorite) {
-                const nextFavorite = await List.findOneAndUpdate(
-                    { template: false, user: req.session.currentUser.id },
-                    { favorite: true },
-                    { new: true }
-                );
-            }
-            if (!nextFavorite) {
-                const newFavorite = await List.create({
-                    name: "New List",
-                    template: false,
-                    favorite: true,
-                    user: req.session.currentUser.id,
-                });
-            }
-            res.sendStatus(204);
+        if (!mongoose.Types.ObjectId.isValid(req.params.listId)) {
+            return res.status(400).send("Invalid request");
         }
+        const deletedList = await List.findByIdAndDelete(req.params.listId);
+        if (!deletedList) {
+            return res.status(400).send("Bad request");
+        }
+        if (deletedList.favorite) {
+            const nextFavorite = await List.findOneAndUpdate(
+                { template: false, user: req.session.currentUser.id },
+                { favorite: true },
+                { new: true }
+            );
+            if (nextFavorite) {
+                return res.status(200).send({ favorite: nextFavorite.id });
+            }
+        }
+        res.sendStatus(204);
     } catch (error) {
         next(error);
     }

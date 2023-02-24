@@ -6,8 +6,8 @@
     <div class="list-wrapper">
 
         {{#each userLists}}
-            <div class="list-element">
-                <div class="one-title">
+                <div class="list-element" data-id="{{id}}">
+                    <div class="one-title">
                     {{#if favorite}}
                         <i data-id="{{id}}" class="fa-solid fa-star"></i>
                     {{else}}

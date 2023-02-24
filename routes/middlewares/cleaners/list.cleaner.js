@@ -11,9 +11,6 @@ const cleanList = async (req, res, next) => {
                 return res.status(400).send("invalid request");
             }
         }
-        if (req.body.name) {
-            // clean name
-        }
 
         if (req.body.rows) {
             const cleanRows = [];
@@ -48,13 +45,6 @@ const cleanList = async (req, res, next) => {
             req.body.rows = cleanRows;
         }
 
-        if (req.body.favorite !== undefined) {
-            // alter favorite
-        }
-
-        if ("user" in req.body) {
-            delete req.body.user;
-        }
         next();
     } catch (error) {
         return next(error);

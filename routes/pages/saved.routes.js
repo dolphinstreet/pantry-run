@@ -14,7 +14,7 @@ router.get("/", async (req, res, next) => {
 
         const user = req.session.currentUser.id;
         const savedLists = await List.find({
-            $and: [{ template: { $eq: true } }, { user: user }],
+            $and: [{ template: { $eq: true } }, { user }],
         });
         res.render("saved/list-of-lists", { savedLists });
     } catch (error) {

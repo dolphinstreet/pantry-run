@@ -7,7 +7,7 @@ async function updateIngredients(ingredient) {
             return null;
         }
         const existingIngredient = await Ingredient.findOne({
-            name: { $regex: new RegExp(ingredient.name, "i") },
+            name: { $regex: new RegExp(`^${ingredient.name}$`, "i") },
         });
         if (existingIngredient) {
             return existingIngredient;

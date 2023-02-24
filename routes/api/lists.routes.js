@@ -36,9 +36,7 @@ router.delete("/:listId", async (req, res, next) => {
             }
             if (deletedList.favorite) {
                 const nextFavorite = await List.findOneAndUpdate(
-                    {
-                        template: false,
-                    },
+                    { template: false, user: req.session.currentUser.id },
                     { favorite: true },
                     { new: true }
                 );
@@ -48,6 +46,7 @@ router.delete("/:listId", async (req, res, next) => {
                     name: "New List",
                     template: false,
                     favorite: true,
+                    user: req.session.currentUser.id,
                 });
             }
             res.sendStatus(204);
@@ -60,7 +59,7 @@ router.delete("/:listId", async (req, res, next) => {
 router.patch("/favorite/:listId", async (req, res, next) => {
     try {
         const previousFavorite = await List.findOneAndUpdate(
-            { favorite: true },
+            { favorite: true, user: req.session.currentUser.id },
             { favorite: false },
             { new: true }
         );

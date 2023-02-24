@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const List = require("../../models/List.model");
 const { cleanList } = require("../middlewares/cleaners/list.cleaner");
 
+// Using prefix: /api
+
 router.post("/", cleanList, async (req, res, next) => {
     try {
         req.body.user = req.session.currentUser.id;
@@ -87,12 +89,34 @@ router.patch("/save", cleanList, async (req, res, next) => {
     }
 });
 
-router.post("/save/:listId", (req, res, next) => {
-    // Save list by duplicating a list based on list Id
-});
+router.post("/save/:listId", async (req, res, next) => {
+    try {
+        if (mongoose.Types.ObjectId.isValid(req.params.listId)) {
+            const list = await List.findById(req.params.listId, {
+                "_id": 0,
+                favorite: 0,
+                rows: { "_id": 0 },
+            });
+            const blueprint = {
+                name: list.name,
+                template: true,
+                user: list.user,
+                rows: [],
+            };
+            list.rows.forEach((row) =>
+                blueprint.rows.push({
+                    amount: row.amount,
+                    unit: row.unit,
+                    ingredient: row.ingredient,
+                })
+            );
 
-router.patch("/:listId", (req, res, next) => {
-    //
+            const template = await List.create(blueprint);
+            res.status(200).send(list);
+        }
+    } catch (error) {
+        next(error);
+    }
 });
 
 router.patch("/import/:destinationId", (req, res, next) => {

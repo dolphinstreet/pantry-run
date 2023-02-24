@@ -1,17 +1,11 @@
 axios.defaults.withCredentials = true;
 
+/////////////////////////////////////////////////////////
 
-
-const settingsButton = document.querySelector(".edit-list .fa-ellipsis-vertical")
-const settingsMenu = document.querySelector(".edit-list .settings")
-const outside = document.querySelector(".edit-list")
+const settingsButton = document.querySelector(".details .fa-ellipsis-vertical")
+const settingsMenu = document.querySelector(".details .settings")
 
 settingsButton.addEventListener("click", openMenu)
-
-
-//settingsButton.addEventListener("click", closeMenu)
-
-
 
 function closeMenu(event) {
     settingsMenu.style.transform = "translateY(-100%)";

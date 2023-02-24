@@ -1,3 +1,7 @@
+
+import initSlider from "./swipe.js";
+
+
 const uncheckedDiv = document.querySelector(".ingredients-by-category");
 const list = document.querySelector(".list");
 const title = document.querySelector("h1");
@@ -9,6 +13,8 @@ const rowTemplate = document.getElementById("template");
 const addbutton = document.querySelector(".fa-plus");
 const searchBar = document.querySelector("input[name=search]");
 
+const deleteButton = document.querySelectorAll(".reveal-right")
+
 saveButton.addEventListener("click", function (event) {
     event.preventDefault();
 
@@ -17,7 +23,6 @@ saveButton.addEventListener("click", function (event) {
     const listInfo = {
         name: title.innerText,
         template: list.dataset.template === "true",
-        //favorite: favorite.classList.contains("fa-solid"),
         rows: [],
     };
 
@@ -39,8 +44,9 @@ saveButton.addEventListener("click", function (event) {
             },
         });
     });
+    console.log(listInfo)
     axios
-        .post(`/api/lists/`, listInfo)
+        .post(`/api/lists`, listInfo)
         .then((res) => {
             window.location.href = redirect;
         })
@@ -52,5 +58,22 @@ saveButton.addEventListener("click", function (event) {
 addbutton.addEventListener("click", (event) => {
     const clone = rowTemplate.content.cloneNode(true);
     clone.querySelector(".item-name").textContent = searchBar.value;
+    initSlider(clone.querySelector(".swipe-item"));
+
+    clone.querySelector(".reveal-right").addEventListener("click", deleteRow)
+
     uncheckedDiv.prepend(clone);
+    searchBar.value = "";
 });
+
+
+
+deleteButton.forEach(el =>
+    el.addEventListener("click", deleteRow)
+)
+
+function deleteRow(event) {
+    const row = event.currentTarget.closest(".swipe-container")
+    const listId = list.dataset.id;
+    row.remove()
+}

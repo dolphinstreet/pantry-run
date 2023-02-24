@@ -1,4 +1,4 @@
-<section class="list-of-lists">
+<section class="list-of-lists saved">
     <header class="list-header">
         <h1>Your lists</h1>
     </header>
@@ -6,20 +6,15 @@
     <div class="list-wrapper">
 
         {{#each savedLists}}
-                <div class="list-element">
-                    <div class="one-title">
-                    {{#if favorite}}
-                        <i data-id="{{id}}" class="fa-solid fa-star"></i>
-                    {{else}}
-                        <i data-id="{{id}}" class="fa-regular fa-star"></i>
-                    {{/if}}
-
-                        <a href="/saved/{{id}}">
-                            <h2>{{name}}</h2>
-                        </a>
-                    </div>
-                    <i class="fa-regular fa-trash-can"></i>
+            <div class="list-element">
+                <div class="one-title">
+                    <img src="./images/addToList.png" alt="add to list icon" />
+                    <a href="/saved/{{id}}">
+                        <h2>{{name}}</h2>
+                    </a>
                 </div>
+                <i class="fa-regular fa-trash-can"></i>
+            </div>
         {{/each}}
 
     </div>

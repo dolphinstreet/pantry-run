@@ -136,7 +136,7 @@ label {
 
 .errorMessage{
   color: var(--redError);
-  font-size: 0.6rem;
+  font-size: 0.8rem;
 }
 
 .input-error{
@@ -145,100 +145,6 @@ label {
 
 
 /*LIST DETAILS----------------------------------------------------*/
-/* 
-.list-details{
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20vh;
-}
-.list-header{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem;
-  align-self: flex-start;
-  position: sticky;
-  top:0;
-  background-color: var(--lightBlue);
-
-}
-.list-title{
-    display: flex;
-    gap: 0.4rem;
-    align-items: flex-start;
-    align-items: baseline;
-}
-.title{
-  display:flex;
-  gap:10px
-}
-.list-details h1{
-  max-width: 70vmin;
-}
-.searchbar{
-  border-bottom: 2px solid var(--blue);
-  display: flex;
-  justify-content: space-between;
-}
-
-.searchbar input{
-    all: unset;
-    width: 80vmin;
-    height: 3rem;
-    padding-left: 0.4rem;
-    margin-top: 0.5rem;
-}
-
-.list-row{
-    display:flex;
-    width: 80vmin;
-    background-color:rgb(116 184 255 / 32%);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    align-items:  baseline;
-}
-.list-row p {
-  margin-right: 0.4rem;
-  overflow:hidden;
-}
-
-.item-name{
-  max-width: 50vmin;
-}
-
-.list-details i{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.checked-items .list-row{
-  color: #00000080;
-  background-color: rgb(116 184 255 / 8%);
-  text-decoration: line-through;
-}
-
-*[contenteditable="true"]:focus{
-  outline: none;
-  border-radius: 7px;
-  padding:0.7rem;
-  border: 2px solid var(--blue);
-}
-
-
-.edit-list p{
-  border: 2px solid #75a1ff5e;
-  border-radius: 7px;
-  padding:0.7rem 1rem;
-  max-width: 50%;
-}
-
-.edit-list .list-row{
-  background-color: rgb(116 184 255 / 8%)
-} */
 
 
 .swipe-item button {
@@ -438,6 +344,22 @@ background-color: rgb(228, 240, 255);
 .one-title h2{
   font-weight: 400;
 }
+/*SAVED LISTS----------------------------------------------------*/
+.saved img {
+  width: 7vmin;
+}
+.saved .one-title{
+  align-items: center;
+  gap: 1rem;
+}
+
+.saved .list-element {
+  align-items: center;
+}
+
+.list-element .fa-star{
+  color:#ffda89;
+}
 
 /*PROFILE----------------------------------------------------*/
 
@@ -531,6 +453,9 @@ hr{
 
 /*XXX----------------------------------------------------*/
 
+.fa-star{
+  color:#ffda89;
+}
 
 /*XXX----------------------------------------------------*/
 

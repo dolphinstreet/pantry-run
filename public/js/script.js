@@ -4,8 +4,11 @@ axios.defaults.withCredentials = true;
 
 const settingsButton = document.querySelector(".details .fa-ellipsis-vertical");
 const settingsMenu = document.querySelector(".details .settings");
+const saveBtn = document.querySelector(".save-list-btn");
 
-settingsButton.addEventListener("click", openMenu);
+if (settingsButton) {
+    settingsButton.addEventListener("click", openMenu);
+}
 
 // settingsButton.addEventListener("click", openMenu);
 
@@ -25,14 +28,16 @@ function openMenu(event) {
     event.currentTarget.addEventListener("click", closeMenu);
 }
 
-document.querySelector(".save-list-btn").addEventListener("click", (event) => {
-    event.preventDefault();
-    const id = document.querySelector(".list-details.details").dataset.id;
-    axios
-        .post("/api/lists/save/" + id)
-        .then((res) => {
-            settingsButton.click();
-            console.log(res);
-        })
-        .catch((e) => console.error(e));
-});
+if (saveBtn) {
+    saveBtn.addEventListener("click", (event) => {
+        event.preventDefault();
+        const id = document.querySelector(".list-details.details").dataset.id;
+        axios
+            .post("/api/lists/save/" + id)
+            .then((res) => {
+                settingsButton.click();
+                console.log(res);
+            })
+            .catch((e) => console.error(e));
+    });
+}

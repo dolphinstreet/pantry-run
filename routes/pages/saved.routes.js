@@ -27,7 +27,8 @@ router.get("/create", (req, res, next) => {
     try {
         res.locals.navbar.link = `/saved`;
         res.locals.navbar.icon = "fa-solid fa-check";
-        res.locals.scripts = ["/js/list-create.js", "/js/list-delete.js"];
+        res.locals.module = ["/js/list-create.js"];
+        res.locals.scripts = ["/js/list-delete.js"];
         res.locals.list = {
             name: "New List",
             template: true,

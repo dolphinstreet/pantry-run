@@ -16,6 +16,7 @@ h3 {
 }
 h1 {
   font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
 h2 {
@@ -458,7 +459,7 @@ background-color: rgb(228, 240, 255);
 }
 
 .profile{
-  height: 110vh;
+  margin-bottom: 20vh;
   display: flex;
   flex-direction: column;
 }
@@ -467,6 +468,7 @@ background-color: rgb(228, 240, 255);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 8vmin;
   padding: 2rem;
 }
@@ -488,6 +490,7 @@ hr{
   flex-direction: column;
   gap: 1rem;
   margin: 4rem 4rem 0 4rem;
+  overflow-wrap: anywhere;
 }
 
 .info{

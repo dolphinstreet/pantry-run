@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
 
         const user = req.session.currentUser.id;
         const userLists = await List.find({
-            $and: [{ template: { $ne: true } }, { user: user }],
+            $and: [{ template: { $ne: true } }, { user }],
         });
         res.render("lists/list-of-lists", { userLists });
     } catch (error) {

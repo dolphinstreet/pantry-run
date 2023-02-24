@@ -3,15 +3,19 @@
     <header class="list-header">
         <div class="list-title">
             <div class="title">
-                {{#if list.favorite}}
-                    <i data-id="{{list.id}}" class="fa-solid fa-star"></i>
-                {{else}}
-                    <i data-id="{{list.id}}" class="fa-regular fa-star"></i>
+
+                {{#if list.template}}{{else}}
+                    {{#if list.favorite}}
+                        <i data-id="{{list.id}}" class="fa-solid fa-star"></i>
+                    {{else}}
+                        <i data-id="{{list.id}}" class="fa-regular fa-star"></i>
+                    {{/if}}
                 {{/if}}
                 <h1>{{list.name}}</h1>
             </div>
             <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
+
     </header>
 
     <div class="list">

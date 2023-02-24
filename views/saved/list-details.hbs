@@ -1,22 +1,25 @@
-<section class="list-details details" data-id="{{list.id}}">
+<section id="list-details-saved"class="list-details details" data-id="{{list.id}}">
 
     <header class="list-header">
         <div class="list-title">
             <div class="title">
-                <img
-                    src="/images/addToList-or.png"
-                    alt="add to list icon "
-                    class="addToList"
-                />
                 <h1>{{list.name}}</h1>
             </div>
             <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
+        <div class="import">
+            <p>Import in</p>
+
         <select id="list-selection">
             {{#each userLists}}
                 <option value="{{_id}}" {{#if favorite}}class="favorite" selected{{/if}}>{{name}}</option>
             {{/each}}
         </select>
+                <img
+                    src="/images/addToList-or.png"
+                    alt="add to list icon "
+                    class="addToList"
+                />
 
     </header>
 

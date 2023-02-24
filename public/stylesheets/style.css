@@ -10,6 +10,7 @@ body {
   font-weight: 300;
   background-color: var(--lightBlue);
   overflow-x: hidden;
+  color: var(--black);
 }
 h3 {
   font-weight: 400;
@@ -348,6 +349,7 @@ background-color: rgb(228, 240, 255);
 /*SAVED LISTS----------------------------------------------------*/
 .addToList {
   width: 7vmin;
+  height: 100%;
 }
 .saved .one-title{
   align-items: center;
@@ -361,6 +363,36 @@ background-color: rgb(228, 240, 255);
 .list-element .fa-star{
   color:#ffda89;
 }
+
+#list-selection{
+    border: 3px solid var(--blue);
+    border-radius: 0.3rem;
+    padding: 0.5rem 1rem;
+    font-family: inherit;
+}
+/* #list-selection::after{
+  content:"";
+  color: red;
+  background-color: blue;
+} */
+
+.import{
+  display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#list-details-saved h1{
+  margin-bottom: 0.6rem;
+}
+
+
+
+
+
+
+
+
 
 /*PROFILE----------------------------------------------------*/
 

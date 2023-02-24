@@ -1,9 +1,10 @@
 <section class="list-of-lists saved">
     <header class="list-header">
-        <h1>Your lists</h1>
+        <h1>Your saved lists</h1>
+            <p>Import in</p>
         <select id="list-selection">
             {{#each userLists}}
-                <option value="{{_id}}" {{#if favorite}}class="favorite" selected{{/if}}>{{name}}</option>
+                <option  value="{{_id}}" {{#if favorite}}class="favorite" selected{{/if}}>{{name}}</option>
             {{/each}}
         </select>
     </header>

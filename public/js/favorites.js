@@ -19,13 +19,18 @@ function switchFavorite(event) {
         .then((res) => {
             star.classList.remove("fa-regular");
             star.classList.add("fa-solid");
+            star.removeEventListener("click", switchFavorite);
+
             if (res.status === 200) {
                 const previousFavorite = document.querySelector(
                     `.fa-star[data-id="${res.data["_id"]}"]`
                 );
 
-                previousFavorite.classList.remove("fa-solid");
-                previousFavorite.classList.add("fa-regular");
+                if (previousFavorite) {
+                    previousFavorite.classList.remove("fa-solid");
+                    previousFavorite.classList.add("fa-regular");
+                    previousFavorite.addEventListener("click", switchFavorite);
+                }
             }
             favoriteOnTop();
         })

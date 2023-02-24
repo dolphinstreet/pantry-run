@@ -438,6 +438,18 @@ background-color: rgb(228, 240, 255);
 .one-title h2{
   font-weight: 400;
 }
+/*SAVED LISTS----------------------------------------------------*/
+.saved img {
+  width: 7vmin;
+}
+.saved .one-title{
+  align-items: center;
+  gap: 1rem;
+}
+
+.saved .list-element {
+  align-items: center;
+}
 
 /*PROFILE----------------------------------------------------*/
 

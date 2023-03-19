@@ -1,4 +1,4 @@
-<img src="./public/images/pantryRun-logo.png">
+<img src="./public/images/pantryRun-logo.png" width="50%" height="50%">
 
 Created by [Delfina 🐬](https://github.com/dolphinstreet) & [Arthur 🤓](https://github.com/Chaudoreille)
 
